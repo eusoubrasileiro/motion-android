@@ -1431,7 +1431,7 @@ static unsigned int generic_move(struct context *cnt, enum track_action action
          * Close any file descriptor except console because we will
          * like to see error messages
          */
-        for (i = getdtablesize() - 1; i > 2; i--) {
+        for (i = sysconf(_SC_OPEN_MAX) - 1; i > 2; i--) {
             close(i);
         }
 

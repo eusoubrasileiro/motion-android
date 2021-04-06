@@ -3339,9 +3339,9 @@ static void motion_watchdog(int indx)
     /* Notes:
      * To test scenarios, just double lock a mutex in a spawned thread.
      * We use detached threads because pthread_join would lock the main thread
-     * If we only call the first pthread_cancel when we reach the watchdog_kill
+     * If we only call the first pthread_detach when we reach the watchdog_kill
      *   it does not break us out of the mutex lock.
-     * We keep sending VTAlarms so the pthread_cancel queued can be caught.
+     * We keep sending VTAlarms so the pthread_detach queued can be caught.
      * The calls to pthread_kill 'may' not work or cause crashes
      *   The cancel could finish and then the pthread_kill could be called
      *   on the invalid thread_id which could cause undefined results
@@ -3369,17 +3369,17 @@ static void motion_watchdog(int indx)
             , cnt_list[indx]->threadnr);
         if ((cnt_list[indx]->camera_type == CAMERA_TYPE_RTSP) &&
             (cnt_list[indx]->rtsp != NULL)) {
-            pthread_cancel(cnt_list[indx]->rtsp->thread_id);
+            pthread_detach(cnt_list[indx]->rtsp->thread_id);
         }
         if ((cnt_list[indx]->camera_type == CAMERA_TYPE_RTSP) &&
             (cnt_list[indx]->rtsp_high != NULL)) {
-            pthread_cancel(cnt_list[indx]->rtsp_high->thread_id);
+            pthread_detach(cnt_list[indx]->rtsp_high->thread_id);
         }
         if ((cnt_list[indx]->camera_type == CAMERA_TYPE_NETCAM) &&
             (cnt_list[indx]->netcam != NULL)) {
-            pthread_cancel(cnt_list[indx]->netcam->thread_id);
+            pthread_detach(cnt_list[indx]->netcam->thread_id);
         }
-        pthread_cancel(cnt_list[indx]->thread_id);
+        pthread_detach(cnt_list[indx]->thread_id);
     }
 
     if (cnt_list[indx]->watchdog < WATCHDOG_KILL) {

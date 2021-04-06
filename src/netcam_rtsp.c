@@ -2219,7 +2219,7 @@ void netcam_rtsp_cleanup(struct context *cnt, int init_retry_flag)
                         ,_("%s: No response from handler thread."),rtsp_data->cameratype);
                     /* Last resort.  Kill the thread. Not safe for posix but if no response, what to do...*/
                     /* pthread_kill(rtsp_data->thread_id); */
-                    pthread_cancel(rtsp_data->thread_id);
+                    pthread_detach(rtsp_data->thread_id);
                     pthread_kill(rtsp_data->thread_id, SIGVTALRM); /* This allows the cancel to be processed */
                     if (!init_retry_flag) {
                         pthread_mutex_lock(&global_lock);

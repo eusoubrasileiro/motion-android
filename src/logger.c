@@ -301,8 +301,7 @@ void motion_log(int level, unsigned int type, int errno_flag,int fncname, const 
             case LOGMODE_SYSLOG:
                 syslog(level, "%s", flood_repeats);
                 strncat(flood_repeats, "\n", 1024 - strlen(flood_repeats));
-                fputs(flood_repeats, stderr);
-                fflush(stderr);
+                LOGE(flood_repeats);
                 break;
             }
         }
@@ -316,13 +315,11 @@ void motion_log(int level, unsigned int type, int errno_flag,int fncname, const 
             break;
 
         case LOGMODE_SYSLOG:
-            syslog(level, "%s", buf);
+            syslog(level, "%s", buf); /* will go to logcat either way */
             strncat(buf, "\n", 1024 - strlen(buf));
-            fputs(buf, stderr);
-            fflush(stderr);
+            LOGE(buf);
             break;
         }
     }
 
 }
-

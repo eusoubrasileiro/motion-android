@@ -3501,8 +3501,12 @@ static int motion_check_threadcount(void)
  *
  * Returns: Motion exit status = 0 always
  */
-int main (int argc, char **argv)
+JNIEXPORT jint JNICALL
+Java_com_android_nvrmotion_MainActivity_motion(JNIEnv *env, jobject thiz)
 {
+    /*  (int argc, char **argv) */
+    int argc=0; /* empty will go to default conf */
+    char **argv;
     int i;
 
     /* Create the TLS key for thread number. */
@@ -3576,4 +3580,3 @@ int main (int argc, char **argv)
 
     return 0;
 }
-

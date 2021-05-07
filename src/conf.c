@@ -45,6 +45,8 @@
 #include "util.h"
 #include "logger.h"
 
+#define MOTIONCONFDIR "/data/data/com.android.nvrmotion/files/"
+
 #define EXTENSION ".conf"
 
 #define stripnewline(x) {if ((x)[strlen(x)-1]=='\n') (x)[strlen(x) - 1] = 0; }
@@ -2364,7 +2366,7 @@ void conf_print(struct context **cnt)
                     if (strlen(val) > 0) {
                         fprintf(conffile, "%s\n", val);
                     } else {
-                        fprintf(conffile, "; camera %s/camera1.conf\n", sysconfdir);
+                        fprintf(conffile, "; camera %s/camera1.conf\n", MOTIONCONFDIR);
                     }
 
                     free(val);
@@ -2372,7 +2374,7 @@ void conf_print(struct context **cnt)
                     char value[PATH_MAX];
                     /* The 'camera_dir' option should keep the installed default value */
                     if (!strncmp(config_params[i].param_name, "camera_dir", 10)) {
-                        sprintf(value, "%s", sysconfdir"/conf.d");
+                        sprintf(value, "%s", MOTIONCONFDIR"/conf.d");
                     } else {
                         sprintf(value, "%s", "value");
                     }
@@ -2445,7 +2447,7 @@ struct context **conf_load(struct context **cnt)
      * 1. Command-line
      * 2. current working directory
      * 3. $HOME/.motion/motion.conf
-     * 4. sysconfdir/motion.conf
+     * 4. MOTIONCONFDIR/motion.conf
      */
     /* Get filename , pid file & log file from Command-line. */
     cnt[0]->log_type_str[0] = 0;
@@ -2488,7 +2490,7 @@ struct context **conf_load(struct context **cnt)
         fp = fopen(filename, "r");
 
         if (!fp) {
-            snprintf(filename, PATH_MAX, "%s/motion.conf", sysconfdir);
+            snprintf(filename, PATH_MAX, "%s/motion.conf", MOTIONCONFDIR);
             fp = fopen(filename, "r");
 
             if (!fp) { /* There is no config file.... use defaults. */
@@ -3366,7 +3368,7 @@ static void usage()
     printf("-h\t\t\tShow this screen.\n");
     printf("\n");
     printf("Motion is configured using a config file only. If none is supplied,\n");
-    printf("it will read motion.conf from current directory, ~/.motion or %s.\n", sysconfdir);
+    printf("it will read motion.conf from current directory, ~/.motion or %s.\n", MOTIONCONFDIR);
     printf("\n");
 }
 

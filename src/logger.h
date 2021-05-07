@@ -28,6 +28,7 @@
 
 #include "motion.h"
 #include <syslog.h>
+#include <android/log.h>
 
 /* Logging mode */
 #define LOGMODE_NONE            0   /* No logging             */
@@ -74,5 +75,20 @@ void set_log_level(unsigned int level);
 void set_log_mode(int mode);
 FILE * set_logfile(const char *logfile_name);
 void motion_log(int level, unsigned int type, int errno_flag,int fncname, const char *fmt, ...);
+
+/** Defines tag used for Android logging. */
+#define LIB_NAME "motion-mobile"
+
+/** Verbose Android logging macro. */
+#define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, LIB_NAME, __VA_ARGS__)
+
+/** Debug Android logging macro. */
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LIB_NAME, __VA_ARGS__)
+
+/** Info Android logging macro. */
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LIB_NAME, __VA_ARGS__)
+
+/** Error Android logging macro. */
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LIB_NAME, __VA_ARGS__)
 
 #endif

@@ -57,6 +57,7 @@ struct ffmpeg;
 #include <pthread.h>
 #include <microhttpd.h>
 #include <regex.h>
+#include <jni.h>
 
 
 #if defined(HAVE_PTHREAD_NP_H)
@@ -553,5 +554,8 @@ extern FILE *ptr_logfile;
 /* TLS keys below */
 extern pthread_key_t tls_key_threadnr; /* key for thread number */
 void motion_remove_pid(void);
+
+JNIEXPORT jint JNICALL
+Java_com_android_nvrmotion_MainActivity_motion(JNIEnv *env, jobject thiz);
 
 #endif /* _INCLUDE_MOTION_H */

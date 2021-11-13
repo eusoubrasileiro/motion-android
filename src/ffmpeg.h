@@ -14,6 +14,11 @@
  *   along with Motion.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+ *  ffmpeg.h
+ *    Headers associated with functions in the ffmpeg.c module.
+ */
+
 #ifndef _INCLUDE_FFMPEG_H_
 #define _INCLUDE_FFMPEG_H_
 
@@ -45,8 +50,8 @@ enum USER_CODEC {
         AVFormatContext *oc;
         AVStream *video_st;
         AVCodecContext *ctx_codec;
-        AVCodec *codec;
-        AVPacket pkt;
+        my_AVCodec      *codec;
+        AVPacket *pkt;
         AVFrame *picture;       /* contains default image pointers */
         AVDictionary *opts;
         struct rtsp_context *rtsp_data;

@@ -14,18 +14,16 @@
  *   along with Motion.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- *      dbse.h
- *
- *      Headers associated with functions in the dbse.c module.
- *
+/*
+ *  dbse.h
+ *    Headers associated with functions in the dbse.c module.
  */
 
 #ifndef _INCLUDE_DBSE_H
 #define _INCLUDE_DBSE_H
 
 void dbse_global_init(struct context **cntlist);
-void dbse_global_deinit(void);
+void dbse_global_deinit(struct context **cntlist);
 
 int dbse_init(struct context *cnt, struct context **cntlist);
 void dbse_deinit(struct context *cnt);

@@ -67,6 +67,8 @@ const char *eventList[] = {
     "EVENT_CAMERA_LOST",
     "EVENT_CAMERA_FOUND",
     "EVENT_FFMPEG_PUT",
+    "EVENT_MOVIE_START",
+    "EVENT_MOVIE_END",
     "EVENT_LAST"
 };
 
@@ -122,9 +124,30 @@ static void event_newfile(struct context *cnt, motion_event eventtype
     (void)img_data;
     (void)tv1;
 
-    MOTION_LOG(NTC, TYPE_EVENTS, NO_ERRNO
-        ,_("File of type %ld saved to: %s")
-        ,(unsigned long)eventdata, filename);
+    if ((unsigned long)eventdata <= 4) {
+        MOTION_LOG(NTC, TYPE_EVENTS, NO_ERRNO
+            ,_("Writing image to file: %s"), filename);
+    } else {
+        MOTION_LOG(NTC, TYPE_EVENTS, NO_ERRNO
+            ,_("Writing movie to file: %s"), filename);
+    }
+}
+
+static void event_closefile(struct context *cnt, motion_event eventtype
+            , struct image_data *img_data, char *filename, void *eventdata, struct timeval *tv1)
+{
+    (void)cnt;
+    (void)eventtype;
+    (void)img_data;
+    (void)tv1;
+
+    if ((unsigned long)eventdata <= 4) {
+        MOTION_LOG(DBG, TYPE_EVENTS, NO_ERRNO
+            ,_("Saved image to file: %s"), filename);
+    } else {
+        MOTION_LOG(DBG, TYPE_EVENTS, NO_ERRNO
+            ,_("Saved movie to file: %s"), filename);
+    }
 }
 
 
@@ -764,6 +787,16 @@ static void event_create_extpipe(struct context *cnt, motion_event eventtype
         char stamp[PATH_MAX] = "";
         const char *moviepath;
 
+        cnt->movie_last_shot = -1;
+        cnt->movie_fps = cnt->lastrate;
+        cnt->movietime = tv1->tv_sec;
+
+        MOTION_LOG(INF, TYPE_EVENTS, NO_ERRNO, _("Source FPS %d"), cnt->movie_fps);
+
+        if (cnt->movie_fps < 2) {
+            cnt->movie_fps = 2;
+        }
+
         /*
          *  conf.mpegpath would normally be defined but if someone deleted it by control interface
          *  it is better to revert to the default than fail
@@ -866,29 +899,6 @@ static void event_extpipe_put(struct context *cnt, motion_event eventtype
     }
 }
 
-
-static void event_new_video(struct context *cnt, motion_event eventtype
-            , struct image_data *img_data, char *filename, void *eventdata, struct timeval *tv1)
-{
-    (void)eventtype;
-    (void)img_data;
-    (void)filename;
-    (void)eventdata;
-    (void)tv1;
-
-    cnt->movie_last_shot = -1;
-
-    cnt->movie_fps = cnt->lastrate;
-
-    MOTION_LOG(INF, TYPE_EVENTS, NO_ERRNO, _("Source FPS %d"), cnt->movie_fps);
-
-    if (cnt->movie_fps < 2) {
-        cnt->movie_fps = 2;
-    }
-
-}
-
-
 static void event_ffmpeg_newfile(struct context *cnt, motion_event eventtype
             , struct image_data *img_data, char *filename, void *eventdata, struct timeval *tv1)
 {
@@ -907,8 +917,18 @@ static void event_ffmpeg_newfile(struct context *cnt, motion_event eventtype
         return;
     }
 
+    cnt->movie_last_shot = -1;
+    cnt->movie_fps = cnt->lastrate;
+    cnt->movietime = tv1->tv_sec;
+
+    MOTION_LOG(INF, TYPE_EVENTS, NO_ERRNO, _("Source FPS %d"), cnt->movie_fps);
+
+    if (cnt->movie_fps < 2) {
+        cnt->movie_fps = 2;
+    }
+
     /*
-     *  conf.mpegpath would normally be defined but if someone deleted it by control interface
+     *  path would normally be defined but if someone deleted it by control interface
      *  it is better to revert to the default than fail
      */
     if (cnt->conf.movie_filename) {
@@ -1312,10 +1332,6 @@ struct event_handlers event_handlers[] = {
     },
     {
     EVENT_FIRSTMOTION,
-    event_new_video
-    },
-    {
-    EVENT_FIRSTMOTION,
     event_ffmpeg_newfile
     },
     {
@@ -1347,6 +1363,10 @@ struct event_handlers event_handlers[] = {
     on_movie_end_command
     },
     {
+    EVENT_FILECLOSE,
+    event_closefile
+    },
+    {
     EVENT_FIRSTMOTION,
     event_create_extpipe
     },
@@ -1369,6 +1389,22 @@ struct event_handlers event_handlers[] = {
     {
     EVENT_CAMERA_FOUND,
     event_camera_found
+    },
+    {
+    EVENT_MOVIE_END,
+    event_ffmpeg_closefile
+    },
+    {
+    EVENT_MOVIE_END,
+    event_extpipe_end
+    },
+    {
+    EVENT_MOVIE_START,
+    event_ffmpeg_newfile
+    },
+    {
+    EVENT_MOVIE_START,
+    event_create_extpipe
     },
     {0, NULL}
 };

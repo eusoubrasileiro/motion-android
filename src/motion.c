@@ -317,9 +317,7 @@ static void context_destroy(struct context *cnt)
 
     /* Free memory allocated for config parameters */
     for (j = 0; config_params[j].param_name != NULL; j++) {
-        if (config_params[j].copy == copy_string ||
-            config_params[j].copy == copy_uri ||
-            config_params[j].copy == read_camera_dir) {
+        if (config_params[j].copy == copy_string ) {
             void **val;
             val = (void *)((char *)cnt+(int)config_params[j].conf_value);
             if (*val) {
@@ -565,6 +563,9 @@ static void motion_detected(struct context *cnt, int dev, struct image_data *img
             mystrftime(cnt, cnt->text_event_string, sizeof(cnt->text_event_string),
                        cnt->conf.text_event, &img->timestamp_tv, NULL, 0);
 
+            MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, _("Motion detected - starting event %d"),
+                       cnt->event_nr);
+
             /* EVENT_FIRSTMOTION triggers on_event_start_command and event_ffmpeg_newfile */
 
             indx = cnt->imgs.image_ring_out-1;
@@ -579,8 +580,6 @@ static void motion_detected(struct context *cnt, int dev, struct image_data *img
                 }
             } while (indx != cnt->imgs.image_ring_in);
 
-            MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO, _("Motion detected - starting event %d"),
-                       cnt->event_nr);
 
             /* always save first motion frame as preview-shot, may be changed to an other one later */
             if (cnt->new_img & (NEWIMG_FIRST | NEWIMG_BEST | NEWIMG_CENTER)) {
@@ -782,13 +781,12 @@ static int init_camera_type(struct context *cnt)
 
     if (cnt->conf.netcam_url) {
         if ((strncmp(cnt->conf.netcam_url,"mjpeg",5) == 0) ||
-            (strncmp(cnt->conf.netcam_url,"v4l2" ,4) == 0) ||
-            (strncmp(cnt->conf.netcam_url,"file" ,4) == 0) ||
-            (strncmp(cnt->conf.netcam_url,"rtmp" ,4) == 0) ||
-            (strncmp(cnt->conf.netcam_url,"rtsp" ,4) == 0)) {
-            cnt->camera_type = CAMERA_TYPE_RTSP;
-        } else {
+            (strncmp(cnt->conf.netcam_url,"ftp" ,3) == 0) ||
+            (strncmp(cnt->conf.netcam_url,"mjpg" ,4) == 0) ||
+            (strncmp(cnt->conf.netcam_url,"jpeg" ,4) == 0)) {
             cnt->camera_type = CAMERA_TYPE_NETCAM;
+        } else {
+            cnt->camera_type = CAMERA_TYPE_RTSP;
         }
         return 0;
     }
@@ -1069,6 +1067,7 @@ static int motion_init(struct context *cnt)
     cnt->imgs.height_high = 0;
     cnt->imgs.size_high = 0;
     cnt->movie_passthrough = cnt->conf.movie_passthrough;
+    cnt->pause = cnt->conf.pause;
 
     MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO
         ,_("Camera %d started: motion detection %s"),
@@ -1430,8 +1429,12 @@ static int motion_init(struct context *cnt)
 static void motion_cleanup(struct context *cnt)
 {
 
-    event(cnt, EVENT_TIMELAPSEEND, NULL, NULL, NULL, NULL);
-    event(cnt, EVENT_ENDMOTION, NULL, NULL, NULL, NULL);
+    event(cnt, EVENT_TIMELAPSEEND, NULL, NULL, NULL, &cnt->current_image->timestamp_tv);
+    if (cnt->event_nr == cnt->prev_event) {
+      /* run only if event active; else, may overwrite last event's data */
+      event(cnt, EVENT_ENDMOTION, NULL, NULL, NULL,  &cnt->current_image->timestamp_tv);
+      cnt->event_nr++;
+    }
 
     mot_stream_deinit(cnt);
 
@@ -1660,7 +1663,7 @@ static void mlp_prepare(struct context *cnt)
     struct timeval tv1;
 
     /***** MOTION LOOP - PREPARE FOR NEW FRAME SECTION *****/
-    cnt->watchdog = WATCHDOG_TMO;
+    cnt->watchdog = cnt->conf.watchdog_tmo;
 
     /* Get current time and preserver last time for frame interval calc. */
 
@@ -2428,13 +2431,6 @@ static void mlp_actions(struct context *cnt)
 
     process_image_ring(cnt);
 
-    /* Check for movie length */
-    if ((cnt->conf.movie_max_time > 0) &&
-        (cnt->event_nr == cnt->prev_event) &&
-        ((cnt->currenttime - cnt->eventtime) >= cnt->conf.movie_max_time)) {
-        cnt->event_stop = TRUE;
-    }
-
     /* Check event gap */
     if ((cnt->conf.event_gap > 0) &&
         ((cnt->currenttime - cnt->lasttime) >= cnt->conf.event_gap )) {
@@ -2472,6 +2468,19 @@ static void mlp_actions(struct context *cnt)
         }
         cnt->event_stop = FALSE;
         cnt->event_user = FALSE;
+    }
+
+    /* Check for movie length.  If we are in post capture processing, then
+     * we just let the current movie finish with that.  Otherwise we close
+     * and set up for the next movie file
+     */
+    if ((cnt->conf.movie_max_time > 0) &&
+        (cnt->event_nr == cnt->prev_event) &&
+        (cnt->current_image->timestamp_tv.tv_sec - cnt->movietime >= cnt->conf.movie_max_time) &&
+        ( !(cnt->current_image->flags & IMAGE_POSTCAP)) &&
+        ( !(cnt->current_image->flags & IMAGE_PRECAP))) {
+        event(cnt, EVENT_MOVIE_END, NULL, NULL, NULL, &cnt->current_image->timestamp_tv);
+        event(cnt, EVENT_MOVIE_START, NULL, NULL, NULL, &cnt->current_image->timestamp_tv);
     }
 
 }
@@ -2983,14 +2992,15 @@ static void cntlist_create(int argc, char *argv[])
 
 static void motion_shutdown(void)
 {
-    int i = -1;
+    int indx;
 
     motion_remove_pid();
 
     webu_stop(cnt_list);
 
-    while (cnt_list[++i]) {
-        context_destroy(cnt_list[i]);
+    indx = -1;
+    while (cnt_list[++indx]) {
+        context_destroy(cnt_list[indx]);
     }
 
     free(cnt_list);
@@ -3124,7 +3134,7 @@ static void motion_ntc(void)
  */
 static void motion_startup(int daemonize, int argc, char *argv[])
 {
-    /* Initialize our global mutex */
+     /* Initialize our global mutex */
     pthread_mutex_init(&global_lock, NULL);
 
     /*
@@ -3170,7 +3180,8 @@ static void motion_startup(int daemonize, int argc, char *argv[])
     if ((cnt_list[0]->conf.log_type == NULL) ||
         !(cnt_list[0]->log_type = get_log_type(cnt_list[0]->conf.log_type))) {
         cnt_list[0]->log_type = TYPE_DEFAULT;
-        cnt_list[0]->conf.log_type = mystrcpy(cnt_list[0]->conf.log_type, "ALL");
+        cnt_list[0]->conf.log_type = mymalloc(4);
+        sprintf(cnt_list[0]->conf.log_type, "%s", "ALL");
         MOTION_LOG(NTC, TYPE_ALL, NO_ERRNO,_("Using default log type (%s)"),
                    get_log_type_str(cnt_list[0]->log_type));
     }
@@ -3293,8 +3304,8 @@ static void motion_start_thread(struct context *cnt)
     /* Set a flag that we want this thread running */
     cnt->restart = 1;
 
-    /* Give the thread WATCHDOG_TMO to start */
-    cnt->watchdog = WATCHDOG_TMO;
+    /* Give the thread watchdog to start */
+    cnt->watchdog = cnt->conf.watchdog_tmo;
 
     /* Flag it as running outside of the thread, otherwise if the main loop
      * checked if it is was running before the thread set it to 1, it would
@@ -3363,7 +3374,7 @@ static void motion_watchdog(int indx)
         cnt_list[indx]->finish = 1;
     }
 
-    if (cnt_list[indx]->watchdog == WATCHDOG_KILL) {
+    if (cnt_list[indx]->watchdog == -cnt_list[indx]->conf.watchdog_kill) {
         MOTION_LOG(ERR, TYPE_ALL, NO_ERRNO
             ,_("Thread %d - Watchdog timeout did NOT restart, killing it!")
             , cnt_list[indx]->threadnr);
@@ -3382,7 +3393,7 @@ static void motion_watchdog(int indx)
         pthread_detach(cnt_list[indx]->thread_id);
     }
 
-    if (cnt_list[indx]->watchdog < WATCHDOG_KILL) {
+    if (cnt_list[indx]->watchdog < -cnt_list[indx]->conf.watchdog_kill) {
         if ((cnt_list[indx]->camera_type == CAMERA_TYPE_NETCAM) &&
             (cnt_list[indx]->rtsp != NULL)) {
             if (!cnt_list[indx]->rtsp->handler_finished &&
@@ -3566,7 +3577,7 @@ int main (int argc, char **argv)
 
     ffmpeg_global_deinit();
 
-    dbse_global_deinit();
+    dbse_global_deinit(cnt_list);
 
     motion_shutdown();
 

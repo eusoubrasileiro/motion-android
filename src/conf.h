@@ -15,15 +15,9 @@
  */
 
 /*
- *
- * conf.h - function prototypes for the config handling routines
- *
- * Originally written for the dproxy package by Matthew Pratt.
- *
- * Copyright 2000 Jeroen Vreeken (pe1rxq@chello.nl)
- *
- *
- *
+ * conf.h
+ *   Originally written for the dproxy package by Matthew Pratt.
+ *   Copyright 2000 Jeroen Vreeken (pe1rxq@chello.nl)
  */
 
 #ifndef _INCLUDE_CONF_H
@@ -42,6 +36,8 @@ struct config {
     char            *log_type;
     int             quiet;
     int             native_language;
+    int             watchdog_tmo;
+    int             watchdog_kill;
     const char      *camera_name;
     int             camera_id;
     const char      *camera_dir;
@@ -81,6 +77,7 @@ struct config {
     const char      *text_event;
 
     /* Motion detection configuration parameters */
+    int             pause;
     int             emulate_motion;
     int             threshold;
     int             threshold_maximum;
@@ -157,7 +154,10 @@ struct config {
     int             webcontrol_tls;
     const char      *webcontrol_cert;
     const char      *webcontrol_key;
-    const char      *webcontrol_cors_header;
+    char            *webcontrol_header_params;
+    int             webcontrol_lock_minutes;
+    int             webcontrol_lock_attempts;
+    int             webcontrol_lock_max_ips;
 
     /* Live stream configuration parameters */
     int             stream_port;
@@ -165,7 +165,7 @@ struct config {
     int             stream_auth_method;
     const char      *stream_authentication;
     int             stream_tls;
-    const char      *stream_cors_header;
+    char            *stream_header_params;
     int             stream_preview_scale;
     int             stream_preview_newline;
     int             stream_preview_method;
@@ -197,10 +197,11 @@ struct config {
     char            **argv;
 };
 
+struct context;
 /**
  * typedef for a param copy function.
  */
-typedef struct context ** (* conf_copy_func)(struct context **, const char *, int);
+typedef void (* conf_copy_func)(struct context *, char *, int);
 typedef const char *(* conf_print_func)(struct context **, char **, int, unsigned int);
 
 /**
@@ -232,13 +233,10 @@ typedef struct {
 
 extern dep_config_param dep_config_params[];
 
-struct context **conf_cmdparse(struct context **cnt, const char *cmd, const char *arg1);
+struct context **conf_cmdparse(struct context **cnt, char *cmd, char *arg1);
 void conf_print(struct context **cnt);
 struct context **conf_load(struct context **cnt);
 void conf_output_parms(struct context **cnt);
-struct context **copy_string(struct context **cnt, const char *str, int val_ptr);
-struct context **copy_uri(struct context **cnt, const char *str, int val);
-const char *config_type(config_param *configparam);
-struct context **read_camera_dir(struct context **cnt, const char *str, int val);
+void copy_string(struct context *cnt, char *str, int val_ptr);
 
 #endif /* _INCLUDE_CONF_H */

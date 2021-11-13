@@ -5,16 +5,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.x\n"
-"Report-Msgid-Bugs-To: https://motion-project.github.io\n"
-"POT-Creation-Date: 2019-12-29 16:29-0700\n"
-"PO-Revision-Date: 2020-01-12 17:45-0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-03 23:12-0600\n"
+"PO-Revision-Date: 2021-10-03 22:57-0600\n"
 "Last-Translator: MrDave <MotionMrDave@gmail.com>\n"
 "Language-Team: MrDave <MotionMrDave@gmail.com>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: src/conf.c
 #, c-format
@@ -75,22 +75,6 @@ msgid "%-25s <redacted>"
 msgstr "%-25s <omhandlet>"
 
 #: src/conf.c
-msgid "Unable to locate vid_control_params"
-msgstr "Kan ikke finde vid-kontrolparametre"
-
-#: src/conf.c
-msgid "No value provided to put into vid_control_params"
-msgstr "Ingen værdi til rådighed for at indsætte i vid-kontrolparametre"
-
-#: src/conf.c
-msgid "Error compiling regex in copy_uri"
-msgstr "Fejl ved kompilering af regex i kopi uri"
-
-#: src/conf.c
-msgid "Invalid origin for cors_header in copy_uri"
-msgstr "Ugyldig oprindelse for cors header i kopi uri"
-
-#: src/conf.c
 #, c-format
 msgid "Processing config file %s"
 msgstr "Behandler konfigurationsfil %s"
@@ -139,6 +123,14 @@ msgid "quiet"
 msgstr "rolige"
 
 #: src/conf.c
+msgid "watchdog_tmo"
+msgstr "vagthund tmo"
+
+#: src/conf.c
+msgid "watchdog_kill"
+msgstr "vagthund dræbe"
+
+#: src/conf.c
 msgid "native_language"
 msgstr "modersprog"
 
@@ -155,36 +147,20 @@ msgid "target_dir"
 msgstr "mål dir"
 
 #: src/conf.c
-msgid "videodevice"
-msgstr "videodevice"
+msgid "video_device"
+msgstr "videoenhed"
 
 #: src/conf.c
-msgid "vid_control_params"
-msgstr "vid kontrol params"
-
-#: src/conf.c
-msgid "v4l2_palette"
-msgstr "v4l2 palet"
-
-#: src/conf.c
-msgid "input"
-msgstr "input"
-
-#: src/conf.c
-msgid "norm"
-msgstr "norm"
-
-#: src/conf.c
-msgid "frequency"
-msgstr "frekvens"
+msgid "video_params"
+msgstr "video params"
 
 #: src/conf.c
 msgid "auto_brightness"
 msgstr "automatisk lysstyrke"
 
 #: src/conf.c
-msgid "tunerdevice"
-msgstr "tunerdevice"
+msgid "tuner_device"
+msgstr "tuner enhed"
 
 #: src/conf.c
 msgid "roundrobin_frames"
@@ -203,40 +179,28 @@ msgid "netcam_url"
 msgstr "netcam url"
 
 #: src/conf.c
-msgid "netcam_highres"
-msgstr "netcam highres"
+msgid "netcam_params"
+msgstr "netcam params"
+
+#: src/conf.c
+msgid "netcam_high_url"
+msgstr "netcam høj url"
+
+#: src/conf.c
+msgid "netcam_high_params"
+msgstr "netcam høje params"
 
 #: src/conf.c
 msgid "netcam_userpass"
 msgstr "netcam brugerpas"
 
 #: src/conf.c
-msgid "netcam_keepalive"
-msgstr "netcam keepalive"
-
-#: src/conf.c
-msgid "netcam_proxy"
-msgstr "netcam proxy"
-
-#: src/conf.c
-msgid "netcam_tolerant_check"
-msgstr "netcam tolerant kontrol"
-
-#: src/conf.c
-msgid "netcam_use_tcp"
-msgstr "netcam brug tcp"
-
-#: src/conf.c
-msgid "netcam_decoder"
-msgstr "netcam dekoder"
-
-#: src/conf.c
 msgid "mmalcam_name"
 msgstr "mmalcam navn"
 
 #: src/conf.c
-msgid "mmalcam_control_params"
-msgstr "mmalcam kontrolparam"
+msgid "mmalcam_params"
+msgstr "mmalcam params"
 
 #: src/conf.c
 msgid "width"
@@ -293,6 +257,10 @@ msgstr "tekstbegivenhed"
 #: src/conf.c
 msgid "emulate_motion"
 msgstr "emulere bevægelse"
+
+#: src/conf.c
+msgid "pause"
+msgstr "pause"
 
 #: src/conf.c
 msgid "threshold"
@@ -539,8 +507,8 @@ msgid "webcontrol_key"
 msgstr "webkontrolnøgle"
 
 #: src/conf.c
-msgid "webcontrol_cors_header"
-msgstr "webkontrol cors header"
+msgid "webcontrol_header_params"
+msgstr "webkontrol header params"
 
 #: src/conf.c
 msgid "stream_port"
@@ -563,8 +531,8 @@ msgid "stream_tls"
 msgstr "stream tls"
 
 #: src/conf.c
-msgid "stream_cors_header"
-msgstr "stream cors header"
+msgid "stream_header_params"
+msgstr "stream header params"
 
 #: src/conf.c
 msgid "stream_preview_scale"
@@ -742,6 +710,191 @@ msgstr "kamera"
 msgid "camera_dir"
 msgstr "kamera dir"
 
+#: src/dbse.c
+msgid "Closing MySQL library"
+msgstr "Lukning af MySQL -bibliotek"
+
+#: src/dbse.c
+msgid "Closing MariaDB library"
+msgstr "Lukning af MariaDB bibliotek"
+
+#: src/dbse.c
+msgid "Database closed"
+msgstr "Database lukket"
+
+#: src/dbse.c
+msgid "Initializing database"
+msgstr "Initialisering af database"
+
+#: src/dbse.c
+#, c-format
+msgid "SQLite3 Database filename %s"
+msgstr "SQLite3 databasefilnavn %s"
+
+#: src/dbse.c
+msgid "SQLite3 is threadsafe"
+msgstr "SQLite3 er trådløs"
+
+#: src/dbse.c
+#, c-format
+msgid "SQLite3 serialized %s"
+msgstr "SQLite3 serialiseret %s"
+
+#: src/dbse.c
+msgid "FAILED"
+msgstr "MISLYKKEDES"
+
+#: src/dbse.c
+msgid "SUCCESS"
+msgstr "SUCCES"
+
+#: src/dbse.c
+#, c-format
+msgid "Can't open SQLite3 database %s : %s"
+msgstr "Kan ikke åbne SQLite3 -databasen %s: %s"
+
+#: src/dbse.c
+#, c-format
+msgid "database_busy_timeout %d msec"
+msgstr "timeout for database optaget %d msek"
+
+#: src/dbse.c
+#, c-format
+msgid "database_busy_timeout failed %s"
+msgstr "timeout for database optaget mislykkedes %s"
+
+#: src/dbse.c
+#, c-format
+msgid "Cannot connect to MySQL database %s on host %s with user %s"
+msgstr ""
+"Kan ikke oprette forbindelse til MySQL-database %s på vært %s med bruger %s"
+
+#: src/dbse.c
+#, c-format
+msgid "MySQL error was %s"
+msgstr "MySQL-fejl var %s"
+
+#: src/dbse.c
+#, c-format
+msgid "Cannot connect to MariaDB database %s on host %s with user %s"
+msgstr ""
+"Kan ikke oprette forbindelse til MariaDB -databasen %s på host %s med bruger "
+"%s"
+
+#: src/dbse.c
+#, c-format
+msgid "MariaDB error was %s"
+msgstr "MariaDB -fejl var %s"
+
+#: src/dbse.c
+msgid "SQLite3 using shared handle"
+msgstr "SQLite3 ved hjælp af delt håndtag"
+
+#: src/dbse.c
+#, c-format
+msgid "Connection to PostgreSQL database '%s' failed: %s"
+msgstr "Forbindelse til PostgreSQL-database ' %s' mislykkedes: %s"
+
+#: src/dbse.c
+#, c-format
+msgid "Database backend %s"
+msgstr "Database backend %s"
+
+#: src/dbse.c
+msgid "Executing MySQL query"
+msgstr "Kører MySQL -forespørgsel"
+
+#: src/dbse.c
+#, c-format
+msgid "MySQL query failed %s error code %d"
+msgstr "MySQL -forespørgsel mislykkedes %s fejlkode %d"
+
+#: src/dbse.c
+#, c-format
+msgid ""
+"Cannot reconnect to MySQL database %s on host %s with user %s MySQL error "
+"was %s"
+msgstr ""
+"Kan ikke oprette forbindelse igen til MySQL-database %s på vært %s med "
+"bruger %s MySQL-fejlvar %s"
+
+#: src/dbse.c
+#, c-format
+msgid "Re-Connection to MySQL database '%s' Succeed"
+msgstr "Genforbindelse til MySQL-databasen '%s' Lykkes"
+
+#: src/dbse.c
+#, c-format
+msgid "after re-connection MySQL query failed %s error code %d"
+msgstr "efter genforbindelse mislykkedes MySQL-forespørgsel %s fejlkode %d"
+
+#: src/dbse.c
+msgid "Executing MariaDB query"
+msgstr "Kører MariaDB -forespørgsel"
+
+#: src/dbse.c
+#, c-format
+msgid "MariaDB query failed %s error code %d"
+msgstr "MariaDB forespørgsel mislykkedes %s fejlkode %d"
+
+#: src/dbse.c
+#, c-format
+msgid ""
+"Cannot reconnect to MariaDB database %s on host %s with user %s MariaDB "
+"error was %s"
+msgstr ""
+"Kan ikke genoprette forbindelse til MariaDB -databasen %s på host %s med "
+"bruger %s MariaDBfejlen var %s"
+
+#: src/dbse.c
+#, c-format
+msgid "Re-Connection to MariaDB database '%s' Succeed"
+msgstr "Genforbindelse til MariaDB-databasen '%s' Lykkes"
+
+#: src/dbse.c
+#, c-format
+msgid "after re-connection MariaDB query failed %s error code %d"
+msgstr "efter genforbindelse mislykkedes MariaDB-forespørgslen %s fejlkode %d"
+
+#: src/dbse.c
+#, c-format
+msgid "Re-connected to PostgreSQL database '%s'"
+msgstr "Forbindes igen til PostgreSQL-databasen '%s'"
+
+#: src/dbse.c
+msgid "Executing PostgreSQL query"
+msgstr "Kører PostgreSQL -forespørgsel"
+
+#: src/dbse.c
+#, c-format
+msgid "Attempting reconnect to PostgreSQL database '%s': %s"
+msgstr ""
+"Forsøger igen at oprette forbindelse til PostgreSQL -databasen ' %s': %s"
+
+#: src/dbse.c
+#, c-format
+msgid "PGSQL query failed: [%s]  %s %s"
+msgstr "PGSQL-forespørgsel mislykkedes: [%s] %s %s"
+
+#: src/dbse.c
+#, c-format
+msgid "INSERT ... RETURNING VALUE=\"%s\""
+msgstr "INSERT ... RETURNING VALUE = \"%s \""
+
+#: src/dbse.c
+#, c-format
+msgid "Invalid event ID returned by SQL query \"%s\""
+msgstr "Ugyldigt hændelses -id returneret af SQL -forespørgsel \"%s \""
+
+#: src/dbse.c
+msgid "Executing SQLite3 query"
+msgstr "Kører SQLite3 -forespørgsel"
+
+#: src/dbse.c
+#, c-format
+msgid "SQLite3 error was %s"
+msgstr "SQLite3 fejl var %s"
+
 #: src/event.c src/track.c
 #, c-format
 msgid "Unable to start external command '%s'"
@@ -751,72 +904,6 @@ msgstr "Kan ikke starte ekstern kommando ' %s'"
 #, c-format
 msgid "Executing external command '%s'"
 msgstr "Udfører ekstern kommando ' %s'"
-
-#: src/event.c
-#, c-format
-msgid "File of type %ld saved to: %s"
-msgstr "Fil af typen %ld gemt til: %s"
-
-#: src/event.c
-msgid "Ignoring empty sql query"
-msgstr "Ignorerer tom sql-forespørgsel"
-
-#: src/event.c
-msgid "Executing mysql query"
-msgstr "Udfører mysql-forespørgsel"
-
-#: src/event.c
-#, c-format
-msgid "Mysql query failed %s error code %d"
-msgstr "Mysql-forespørgsel mislykkedes %s fejlkode %d"
-
-#: src/event.c
-#, c-format
-msgid "Cannot reconnect to MySQL database %s on host %s with user %s MySQL error was %s"
-msgstr "Kan ikke oprette forbindelse igen til MySQL-database %s på vært %s med bruger %s MySQL-fejlvar %s"
-
-#: src/event.c
-#, c-format
-msgid "Re-Connection to Mysql database '%s' Succeed"
-msgstr "Genforbindelse til Mysql-databasen ' %s' Lykkes"
-
-#: src/event.c
-#, c-format
-msgid "after re-connection Mysql query failed %s error code %d"
-msgstr "efter genforbindelse Mysql-forespørgsel mislykkedes %s fejlkode %d"
-
-#: src/event.c
-msgid "Executing postgresql query"
-msgstr "Udfører postgresql-forespørgsel"
-
-#: src/event.c src/motion.c
-#, c-format
-msgid "Connection to PostgreSQL database '%s' failed: %s"
-msgstr "Forbindelse til PostgreSQL-database ' %s' mislykkedes: %s"
-
-#: src/event.c
-#, c-format
-msgid "Re-Connection to PostgreSQL database '%s' failed: %s"
-msgstr "Genforbindelse til PostgreSQL-databasen ' %s' mislykkedes: %s"
-
-#: src/event.c
-#, c-format
-msgid "Re-Connection to PostgreSQL database '%s' Succeed"
-msgstr "Genforbindelse til PostgreSQL-database ' %s' Lykkes"
-
-#: src/event.c
-#, c-format
-msgid "PGSQL query failed: [%s]  %s %s"
-msgstr "PGSQL-forespørgsel mislykkedes: [%s] %s %s"
-
-#: src/event.c
-msgid "Executing sqlite query"
-msgstr "Udfører sqlite-forespørgsel"
-
-#: src/event.c
-#, c-format
-msgid "SQLite error was %s"
-msgstr "SQLite-fejl var %s"
 
 #: src/event.c
 msgid "Failed to put image into video pipe"
@@ -851,6 +938,11 @@ msgstr "LUKKING: extpipe-fil desc %d, fejltilstand %d"
 #, c-format
 msgid "pclose return: %d"
 msgstr "pclose-afkast: %d"
+
+#: src/event.c
+#, c-format
+msgid "Source FPS %d"
+msgstr "Kilde FPS %d"
 
 #: src/event.c
 #, c-format
@@ -906,11 +998,6 @@ msgid "pipe %s not created or closed already "
 msgstr "pipe %s er ikke allerede oprettet eller lukket"
 
 #: src/event.c
-#, c-format
-msgid "Source FPS %d"
-msgstr "Kilde FPS %d"
-
-#: src/event.c
 msgid "The ogg container is no longer supported.  Changing to mpeg4"
 msgstr "Ogg-containeren understøttes ikke længere. Skift til mpeg4"
 
@@ -928,8 +1015,11 @@ msgid "ffopen_open error creating (motion) file [%s]"
 msgstr "ffopen åben fejl ved oprettelse af (bevægelses) fil [ %s]"
 
 #: src/event.c
-msgid "The swf container for timelapse no longer supported.  Using mpg container."
-msgstr "SWF-beholderen til timelapse understøttes ikke længere. Brug af mpg-container."
+msgid ""
+"The swf container for timelapse no longer supported.  Using mpg container."
+msgstr ""
+"SWF-beholderen til timelapse understøttes ikke længere. Brug af mpg-"
+"container."
 
 #: src/event.c
 msgid "Timelapse using mpg codec."
@@ -962,11 +1052,11 @@ msgstr "Kunne ikke tildele hukommelse til codec-navn"
 
 #: src/ffmpeg.c
 msgid ""
-"The frame rate specified is too high for the ffmpeg movie type specified. Choose a different ffmpeg container or "
-"lower framerate."
+"The frame rate specified is too high for the ffmpeg movie type specified. "
+"Choose a different ffmpeg container or lower framerate."
 msgstr ""
-"Den angivne billedhastighed er for høj til den angivne ffmpeg-filmtype.Vælg en anden ffmpeg-beholder eller lavere "
-"indramning."
+"Den angivne billedhastighed er for høj til den angivne ffmpeg-filmtype.Vælg "
+"en anden ffmpeg-beholder eller lavere indramning."
 
 #: src/ffmpeg.c
 msgid "Error setting base file name"
@@ -1017,7 +1107,8 @@ msgstr "Fejl ved kodning af video"
 #: src/ffmpeg.c
 #, c-format
 msgid "PTS %<PRId64> Base PTS %<PRId64> ms interval %<PRId64> timebase %d-%d"
-msgstr "PTS %<PRId64> Basis PTS %<PRId64> ms intervall %<PRId64> tidsbase %d- %d"
+msgstr ""
+"PTS %<PRId64> Basis PTS %<PRId64> ms intervall %<PRId64> tidsbase %d- %d"
 
 #: src/ffmpeg.c
 msgid "BAD TIMING!! Frame skipped."
@@ -1025,8 +1116,12 @@ msgstr "DÅRLIG TIMING!! Ramme sprunget over."
 
 #: src/ffmpeg.c
 #, c-format
-msgid "PTS %<PRId64> Base PTS %<PRId64> ms interval %<PRId64> timebase %d-%d Change %d"
-msgstr "PTS %<PRId64> Basis PTS %<PRId64> ms interval %<PRId64> tidsbase %d- %d Ændring%d"
+msgid ""
+"PTS %<PRId64> Base PTS %<PRId64> ms interval %<PRId64> timebase %d-%d Change "
+"%d"
+msgstr ""
+"PTS %<PRId64> Basis PTS %<PRId64> ms interval %<PRId64> tidsbase %d- %d "
+"Ændring%d"
 
 #: src/ffmpeg.c
 #, c-format
@@ -1220,10 +1315,6 @@ msgstr "Overdreven forsøg på at rydde den bufferede pakke"
 msgid "Buffered packet"
 msgstr "Bufret pakke"
 
-#: src/ffmpeg.c
-msgid "No ffmpeg support"
-msgstr "Ingen ffmpeg support"
-
 #: src/jpegutils.c
 #, c-format
 msgid "%s: Given jpeg buffer was too small"
@@ -1245,11 +1336,13 @@ msgstr "Modtaget uventet kamerakontrol tilbagekaldshændelse, 0x %08x"
 
 #: src/mmalcam.c
 msgid "A high frame rate can cause problems with exposure of images"
-msgstr "En høj billedhastighed kan forårsage problemer med eksponering af billeder"
+msgstr ""
+"En høj billedhastighed kan forårsage problemer med eksponering af billeder"
 
 #: src/mmalcam.c
 msgid "If autoexposure is not working, try a lower frame rate."
-msgstr "Hvis autoexponering ikke fungerer, kan du prøve en lavere billedhastighed."
+msgstr ""
+"Hvis autoexponering ikke fungerer, kan du prøve en lavere billedhastighed."
 
 #: src/mmalcam.c
 #, c-format
@@ -1377,7 +1470,9 @@ msgstr "Fejl ved åbning af maskefil %s"
 
 #: src/motion.c
 msgid "Failed to read mask privacy image. Mask privacy feature disabled."
-msgstr "Kunne ikke læse maske privatlivsbillede. Funktion til beskyttelse af maske er deaktiveret."
+msgstr ""
+"Kunne ikke læse maske privatlivsbillede. Funktion til beskyttelse af maske "
+"er deaktiveret."
 
 #: src/motion.c
 #, c-format
@@ -1388,70 +1483,6 @@ msgstr "Mask privatlivsfil \" %s \" indlæst."
 #, c-format
 msgid "Invalid text scale.  Adjusted to %d"
 msgstr "Ugyldig tekstskala. Justeret til %d"
-
-#: src/motion.c
-msgid "Closing MYSQL"
-msgstr "Lukker MYSQL"
-
-#: src/motion.c
-msgid "Initializing database"
-msgstr "Initialisering af database"
-
-#: src/motion.c
-#, c-format
-msgid "SQLite3 Database filename %s"
-msgstr "SQLite3 databasefilnavn %s"
-
-#: src/motion.c
-msgid "SQLite3 is threadsafe"
-msgstr "SQLite3 er trådløs"
-
-#: src/motion.c
-#, c-format
-msgid "SQLite3 serialized %s"
-msgstr "SQLite3 serialiseret %s"
-
-#: src/motion.c
-msgid "FAILED"
-msgstr "MISLYKKEDES"
-
-#: src/motion.c
-msgid "SUCCESS"
-msgstr "SUCCES"
-
-#: src/motion.c
-#, c-format
-msgid "Can't open database %s : %s"
-msgstr "Kan ikke åbne databasen %s: %s"
-
-#: src/motion.c
-#, c-format
-msgid "database_busy_timeout %d msec"
-msgstr "timeout for database optaget %d msek"
-
-#: src/motion.c
-#, c-format
-msgid "database_busy_timeout failed %s"
-msgstr "timeout for database optaget mislykkedes %s"
-
-#: src/motion.c
-#, c-format
-msgid "Cannot connect to MySQL database %s on host %s with user %s"
-msgstr "Kan ikke oprette forbindelse til MySQL-database %s på vært %s med bruger %s"
-
-#: src/motion.c
-#, c-format
-msgid "MySQL error was %s"
-msgstr "MySQL-fejl var %s"
-
-#: src/motion.c
-msgid "SQLite3 using shared handle"
-msgstr "SQLite3 ved hjælp af delt håndtag"
-
-#: src/motion.c
-#, c-format
-msgid "Database backend %s"
-msgstr "Database backend %s"
 
 #: src/motion.c
 #, c-format
@@ -1506,7 +1537,8 @@ msgstr "Kunne ikke hente det oprindelige billede fra kameraet"
 
 #: src/motion.c
 msgid "Motion continues using width and height from config file(s)"
-msgstr "Bevægelse fortsætter med at bruge bredde og højde fra konfigurationsfil (er)"
+msgstr ""
+"Bevægelse fortsætter med at bruge bredde og højde fra konfigurationsfil (er)"
 
 #: src/motion.c
 msgid "Motion only supports width and height modulo 8"
@@ -1520,7 +1552,8 @@ msgstr "Billedbredde ( %d) eller anmodet om højde ( %d) er ikke modulo 8."
 #: src/motion.c
 #, c-format
 msgid "Motion only supports width and height greater than or equal to 64 %dx%d"
-msgstr "Bevægelse understøtter kun bredde og højde større end eller lig med 64 %dx %d"
+msgstr ""
+"Bevægelse understøtter kun bredde og højde større end eller lig med 64 %dx %d"
 
 #: src/motion.c
 msgid "Substream not available.  Image sizes not modulo 16."
@@ -1560,16 +1593,6 @@ msgid "Maskfile \"%s\" loaded."
 msgstr "Maskefile \" %s \" indlæst."
 
 #: src/motion.c
-#, c-format
-msgid "Problem enabling motion-stream server in port %d"
-msgstr "Problemer med at aktivere motion-stream-server i port %d"
-
-#: src/motion.c
-#, c-format
-msgid "Started motion-stream server on port %d (auth %s)"
-msgstr "Startet motion-stream-server på port %d (autorisation %s)"
-
-#: src/motion.c
 msgid "Emulating motion"
 msgstr "Efterligende bevægelse"
 
@@ -1589,12 +1612,16 @@ msgstr "Forsøg igen, indtil en vellykket forbindelse med kameraet"
 #: src/motion.c
 msgid ""
 "Camera has finally become available\n"
-"Camera image has different width and heightfrom what is in the config file. You should fix that\n"
-"Restarting Motion thread to reinitialize all image buffers to new picture dimensions"
+"Camera image has different width and heightfrom what is in the config file. "
+"You should fix that\n"
+"Restarting Motion thread to reinitialize all image buffers to new picture "
+"dimensions"
 msgstr ""
 "Kameraet er endelig blevet tilgængeligt \n"
-"Kamerabillede har forskellig bredde og højde fra det, der findes i konfigurationsfilen.Du skal ordne det \n"
-"Genstart bevægelsestråd for at initialisere alle billedbuffere til et nyt billededimensioner"
+"Kamerabillede har forskellig bredde og højde fra det, der findes i "
+"konfigurationsfilen.Du skal ordne det \n"
+"Genstart bevægelsestråd for at initialisere alle billedbuffere til et nyt "
+"billededimensioner"
 
 #: src/motion.c
 msgid "Video signal re-acquired"
@@ -1690,8 +1717,12 @@ msgid "Created process id file %s. Process ID is %d"
 msgstr "Oprettet proces-id-fil %s. Proces-id er %d"
 
 #: src/motion.c
-msgid "Camara IDs are not unique or have values over 32,000.  Falling back to thread numbers"
-msgstr "Camara-id'er er ikke unikke eller har værdier over 32.000. Falder tilbage tiltrådnumre"
+msgid ""
+"Camara IDs are not unique or have values over 32,000.  Falling back to "
+"thread numbers"
+msgstr ""
+"Camara-id'er er ikke unikke eller har værdier over 32.000. Falder tilbage "
+"tiltrådnumre"
 
 #: src/motion.c
 msgid "v4l2   : available"
@@ -1891,66 +1922,9 @@ msgstr "Tråde færdige"
 msgid "Motion terminating"
 msgstr "Bevægelsesafslutning"
 
-#: src/motion.c
-#, c-format
-msgid "Could not allocate %llu bytes of memory!"
-msgstr "Kunne ikke tildele %llu bytes hukommelse!"
-
-#: src/motion.c
-#, c-format
-msgid "Warning! Function %s tries to resize memoryblock at %p to 0 bytes!"
-msgstr "Advarsel! Funktion %s forsøger at ændre størrelse på hukommelsesblok ved %p til 0 byte!"
-
-#: src/motion.c
-#, c-format
-msgid "Could not resize memory-block at offset %p to %llu bytes (function %s)!"
-msgstr "Kunne ikke ændre størrelsen på hukommelsesblokken ved forskydning %p til %llu byte (funktion %s)!"
-
-#: src/motion.c
-#, c-format
-msgid "Problem creating directory %s"
-msgstr "Problemer med at oprette mappe %s"
-
-#: src/motion.c
-#, c-format
-msgid "creating directory %s"
-msgstr "oprette mappe %s"
-
-#: src/motion.c
-#, c-format
-msgid "Error opening file %s with mode %s"
-msgstr "Fejl ved åbning af fil %s med tilstand %s"
-
-#: src/motion.c
-msgid "Error closing file"
-msgstr "Fejl ved lukning af fil"
-
-#: src/motion.c
-#, c-format
-msgid "invalid format specifier keyword %*.*s"
-msgstr "ugyldigt formatspecifikt nøgleord %*.*s"
-
-#: src/motion.c
-#, c-format
-msgid "Unable to set thread name %s"
-msgstr "Kunne ikke indstille trådnavnet %s"
-
-#: src/motion.c
-msgid "FFMPEG version too old. Disabling pass-through processing."
-msgstr "FFMPEG-version for gammel. Deaktiverer gennemgangsbehandling."
-
-#: src/motion.c
-msgid "pass-through is enabled but is still experimental."
-msgstr "gennemgang er aktiveret, men er stadig eksperimentel."
-
 #: src/netcam.c
 msgid "Invalid URL.  Can not parse values."
 msgstr "Ugyldig URL. Kan ikke analysere værdier."
-
-#: src/netcam.c
-#, c-format
-msgid "Using port number %d"
-msgstr "Brug af portnummer %d"
 
 #: src/netcam.c
 #, c-format
@@ -1958,8 +1932,12 @@ msgid "Camera handler thread [%d] started"
 msgstr "Kamerahåndteringstråd [ %d] startede"
 
 #: src/netcam.c
-msgid "Closing netcam socket as Keep-Alive time is up (camera sent Close field). A reconnect should happen."
-msgstr "Lukning af netcam-stikket, når Keep-Alive-tiden er op (kameraet sendes Luk felt). ENgenforbindelse skal ske."
+msgid ""
+"Closing netcam socket as Keep-Alive time is up (camera sent Close field). A "
+"reconnect should happen."
+msgstr ""
+"Lukning af netcam-stikket, når Keep-Alive-tiden er op (kameraet sendes Luk "
+"felt). ENgenforbindelse skal ske."
 
 #: src/netcam.c
 msgid "re-opening camera (non-streaming)"
@@ -2029,8 +2007,12 @@ msgstr "Ugyldig webkamera-url til kamera ( %s)"
 
 #: src/netcam.c
 #, c-format
-msgid "Netcam_http parameter '%s' converts to flags: HTTP/1.0: %s HTTP/1.1: %s Keep-Alive %s."
-msgstr "Netcam http-parameter ' %s' konverteres til flag: HTTP / 1.0: %s HTTP / 1.1: %s Keep-Lever %s."
+msgid ""
+"Netcam_http parameter '%s' converts to flags: HTTP/1.0: %s HTTP/1.1: %s Keep-"
+"Alive %s."
+msgstr ""
+"Netcam http-parameter ' %s' konverteres til flag: HTTP / 1.0: %s HTTP / 1.1: "
+"%s Keep-Lever %s."
 
 #: src/netcam.c
 msgid "now calling netcam_setup_html()"
@@ -2044,10 +2026,14 @@ msgstr "kalder nu netcam setup ftp"
 msgid "now calling netcam_setup_file()"
 msgstr "kalder nu netcam setup-fil ()"
 
+#: src/netcam.c src/netcam_http.c
+msgid "now calling netcam_setup_mjpg()"
+msgstr "kalder nu netcam setup mjpg ()"
+
 #: src/netcam.c
 #, c-format
-msgid "Invalid netcam service '%s' - must be http, ftp, mjpg, mjpeg, v4l2 or jpeg."
-msgstr "Ugyldig netkamptjeneste ' %s' - skal være http, ftp, mjpg, mjpeg, v4l2 eller jpeg."
+msgid "Invalid netcam service '%s' - must be mjpeg, ftp, mjpg or jpeg."
+msgstr "Ugyldig netcam service '%s' - skal være mjpeg, ftp, mjpg eller jpeg."
 
 #: src/netcam.c src/netcam_rtsp.c
 #, c-format
@@ -2170,12 +2156,15 @@ msgstr "Indholdstype %s"
 
 #: src/netcam_http.c
 msgid "Error reading image header, streaming mode (1). Null header."
-msgstr "Fejl ved læsning af billedhoved, streamingtilstand (1). Nul overskrift."
+msgstr ""
+"Fejl ved læsning af billedhoved, streamingtilstand (1). Nul overskrift."
 
 #: src/netcam_http.c
 #, c-format
 msgid "Error reading image header, streaming mode (1). Unknown header '%s'"
-msgstr "Fejl ved læsning af billedhoved, streamingtilstand (1). Ukendt overskrift ' %s'"
+msgstr ""
+"Fejl ved læsning af billedhoved, streamingtilstand (1). Ukendt overskrift ' "
+"%s'"
 
 #: src/netcam_http.c
 msgid "Error reading image header (2)"
@@ -2214,7 +2203,9 @@ msgstr "HTTP-resultatkode %d"
 
 #: src/netcam_http.c
 msgid "Removed netcam Keep-Alive flag due to apparent closed HTTP connection."
-msgstr "Fjernet netcam Keep-Alive-flag på grund af tilsyneladende lukket HTTP-forbindelse."
+msgstr ""
+"Fjernet netcam Keep-Alive-flag på grund af tilsyneladende lukket HTTP-"
+"forbindelse."
 
 #: src/netcam_http.c
 msgid "Non-streaming camera (keep-alive set)"
@@ -2238,8 +2229,12 @@ msgid "Boundary string not found in header"
 msgstr "Afgrænsningsstreng ikke fundet i header"
 
 #: src/netcam_http.c
-msgid "Streaming camera probably using MJPG-blocks, consider using mjpg:// netcam_url."
-msgstr "Streaming kamera sandsynligvis bruger MJPG-blokke, overveje at bruge mjpg: //netcam url."
+msgid ""
+"Streaming camera probably using MJPG-blocks, consider using mjpg:// "
+"netcam_url."
+msgstr ""
+"Streaming kamera sandsynligvis bruger MJPG-blokke, overveje at bruge mjpg: //"
+"netcam url."
 
 #: src/netcam_http.c
 msgid "Unrecognized content type"
@@ -2259,12 +2254,20 @@ msgid "Found Conn: close header ('%s')"
 msgstr "Fundet Conn: luk overskrift (' %s')"
 
 #: src/netcam_http.c
-msgid "Both 'Connection: Keep-Alive' and 'Connection: close' header received. Motion removes keepalive."
-msgstr "Både 'Forbindelse: Keep-Alive' og 'Connection: close' overskrift modtaget.Bevægelse fjerner keepalive."
+msgid ""
+"Both 'Connection: Keep-Alive' and 'Connection: close' header received. "
+"Motion removes keepalive."
+msgstr ""
+"Både 'Forbindelse: Keep-Alive' og 'Connection: close' overskrift modtaget."
+"Bevægelse fjerner keepalive."
 
 #: src/netcam_http.c
-msgid "Both 'Connection: Keep-Alive' and 'Connection: close' header received. Motion continues unchanged."
-msgstr "Både 'Forbindelse: Keep-Alive' og 'Connection: close' overskrift modtaget.Bevægelse fortsætter uændret."
+msgid ""
+"Both 'Connection: Keep-Alive' and 'Connection: close' header received. "
+"Motion continues unchanged."
+msgstr ""
+"Både 'Forbindelse: Keep-Alive' og 'Connection: close' overskrift modtaget."
+"Bevægelse fortsætter uændret."
 
 #: src/netcam_http.c
 msgid "Received a Keep-Alive field in this set of headers."
@@ -2275,7 +2278,8 @@ msgid ""
 "No 'Connection: Keep-Alive' nor 'Connection: close' header received.\n"
 " Motion removes keepalive."
 msgstr ""
-"Ingen 'forbindelse: Keep-Alive' eller 'Connection: close' overskrift modtaget. \n"
+"Ingen 'forbindelse: Keep-Alive' eller 'Connection: close' overskrift "
+"modtaget. \n"
 " Bevægelse fjerner keepalive."
 
 #: src/netcam_http.c
@@ -2283,7 +2287,8 @@ msgid ""
 "No 'Connection: Keep-Alive' nor 'Connection: close' header received.\n"
 " Motion continues unchanged."
 msgstr ""
-"Ingen 'forbindelse: Keep-Alive' eller 'Connection: close' overskrift modtaget. \n"
+"Ingen 'forbindelse: Keep-Alive' eller 'Connection: close' overskrift "
+"modtaget. \n"
 " Bevægelse fortsætter uændret."
 
 #: src/netcam_http.c
@@ -2291,7 +2296,8 @@ msgid ""
 "Removed netcam Keep-Alive flag because 'Connection: close' header received.\n"
 " Netcam does not support Keep-Alive. Motion continues in non-Keep-Alive."
 msgstr ""
-"Fjernet netkamera Keep-Alive-flag, fordi 'Forbindelse: tæt' overskrift modtaget. \n"
+"Fjernet netkamera Keep-Alive-flag, fordi 'Forbindelse: tæt' overskrift "
+"modtaget. \n"
 " Netcam understøtter ikke Keep-Alive. Bevægelse fortsætter i ikke-Keep-Alive."
 
 #: src/netcam_http.c
@@ -2300,7 +2306,8 @@ msgid ""
 "Motion will close netcam, then resume Keep-Alive with a new socket."
 msgstr ""
 "Keep-Alive har nået slutningen af ​​den gyldige periode. \n"
-"Bevægelse lukker netcam og fortsætter derefter Keep-Alive med en ny stikkontakt."
+"Bevægelse lukker netcam og fortsætter derefter Keep-Alive med en ny "
+"stikkontakt."
 
 #: src/netcam_http.c
 msgid "disconnect"
@@ -2329,13 +2336,21 @@ msgid "with no keepalive, new socket created fd %d"
 msgstr "uden keepalive, ny socket oprettet fd %d"
 
 #: src/netcam_http.c
-msgid "with keepalive set, invalid socket.This could be the first time. Creating a new one failed."
-msgstr "med keepalive-sæt, ugyldig stikkontakt. Dette kan være første gang. Oprettelse af enden nye mislykkedes."
+msgid ""
+"with keepalive set, invalid socket.This could be the first time. Creating a "
+"new one failed."
+msgstr ""
+"med keepalive-sæt, ugyldig stikkontakt. Dette kan være første gang. "
+"Oprettelse af enden nye mislykkedes."
 
 #: src/netcam_http.c
 #, c-format
-msgid "with keepalive set, invalid socket.This could be first time, created a new one with fd %d"
-msgstr "med keepalive-sæt, ugyldig socket.Dette kunne være første gang, oprettes en nyen med fd %d"
+msgid ""
+"with keepalive set, invalid socket.This could be first time, created a new "
+"one with fd %d"
+msgstr ""
+"med keepalive-sæt, ugyldig socket.Dette kunne være første gang, oprettes en "
+"nyen med fd %d"
 
 #: src/netcam_http.c
 #, c-format
@@ -2421,7 +2436,8 @@ msgstr "ved at prøve at oprette forbindelse, tid # %d"
 
 #: src/netcam_http.c
 msgid "Failed to open camera - check your config and that netcamera is online"
-msgstr "Kunne ikke åbne kameraet - kontroller din config, og at netcameraet er online"
+msgstr ""
+"Kunne ikke åbne kameraet - kontroller din config, og at netcameraet er online"
 
 #: src/netcam_http.c
 msgid "Error reading first header - re-trying"
@@ -2437,8 +2453,12 @@ msgid "Netcam has flags: HTTP/1.0: %s HTTP/1.1: %s Keep-Alive %s."
 msgstr "Netcam har flag: HTTP / 1.0: %s HTTP / 1.1: %s Keep-Alive %s."
 
 #: src/netcam_http.c
-msgid "Removed netcam_keepalive flag due to proxy set.Proxy is incompatible with Keep-Alive."
-msgstr "Fjernet netcam keepalive flag på grund af proxysæt. Proxy er ikke kompatibel medHolde i live."
+msgid ""
+"Removed netcam_keepalive flag due to proxy set.Proxy is incompatible with "
+"Keep-Alive."
+msgstr ""
+"Fjernet netcam keepalive flag på grund af proxysæt. Proxy er ikke kompatibel "
+"medHolde i live."
 
 #: src/netcam_http.c
 msgid "Failed to read first stream header - giving up for now"
@@ -2484,10 +2504,6 @@ msgstr "Chunk komplet, buffer brugt [ %d] bytes."
 #, c-format
 msgid "Image complete, buffer used [%d] bytes."
 msgstr "Billedet er komplet, buffer brugt [ %d] byte."
-
-#: src/netcam_http.c
-msgid "now calling netcam_setup_mjpg()"
-msgstr "kalder nu netcam setup mjpg ()"
 
 #: src/netcam_http.c
 msgid "connected, going on to read and decode MJPG chunks."
@@ -2573,8 +2589,12 @@ msgstr "returkode %d"
 
 #: src/netcam_jpeg.c
 #, c-format
-msgid "Camera width/height mismatch with JPEG image -  expected %dx%d, JPEG %dx%d retval %d"
-msgstr "Kamerabredde / højde-uoverensstemmelse med JPEG-billede - forventet %dx %d, JPEG %dx %dgentagelse %d"
+msgid ""
+"Camera width/height mismatch with JPEG image -  expected %dx%d, JPEG %dx%d "
+"retval %d"
+msgstr ""
+"Kamerabredde / højde-uoverensstemmelse med JPEG-billede - forventet %dx %d, "
+"JPEG %dx %dgentagelse %d"
 
 #: src/netcam_jpeg.c
 #, c-format
@@ -2600,18 +2620,18 @@ msgid "False"
 msgstr "Falsk"
 
 #: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Ignoring packet with invalid data"
+msgstr "%s: Ignorerer pakke med ugyldige data"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Rec frame error: %s"
+msgstr "%s: Rec frame frame: %s"
+
+#: src/netcam_rtsp.c
 msgid "Ignoring packet with invalid data"
 msgstr "Ignorerer pakken med ugyldige data"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "Error sending packet to codec: %s"
-msgstr "Fejl ved afsendelse af pakke til codec: %s"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "Error receiving frame from codec: %s"
-msgstr "Fejl ved modtagelse af ramme fra codec: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
@@ -2619,28 +2639,106 @@ msgid "Error decoding packet: %s"
 msgstr "Fejl ved afkodning af pakke: %s"
 
 #: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Error transferring HW decoded to system memory"
+msgstr "%s: Fejl ved overførsel af HW afkodet til systemhukommelse"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "Error sending packet to codec: %s"
+msgstr "Fejl ved afsendelse af pakke til codec: %s"
+
+#: src/netcam_rtsp.c
 msgid "Error decoding video packet: Copying to buffer"
 msgstr "Fejl ved afkodning af videopakke: Kopiering til buffer"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: %s: %s,Interrupt %s"
-msgstr "%s: %s: %s, Afbryd %s"
+msgid "%s: HW Devices: "
+msgstr "%s: HW -enheder:"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: %s: Failed,Interrupt %s"
-msgstr "%s: %s: Mislykkedes, Afbryd %s"
+msgid "%s: %s (available)"
+msgstr "%s: %s (tilgængelig)"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Ignoring user requested decoder %s"
-msgstr "%s: Ignorerer brugeranmodet dekoder %s"
+msgid "%s: %s (not implemented)"
+msgstr "%s: %s (ikke implementeret)"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: netcam_decoder %s disabled."
+msgstr "%s: netcam -dekoder %s deaktiveret."
+
+#: src/netcam_rtsp.c
+msgid "Failed to get vaapi pix format"
+msgstr "Kunne ikke hente vaapi pix -format"
+
+#: src/netcam_rtsp.c
+msgid "Failed to get cuda pix format"
+msgstr "Kunne ikke hente cuda pix -format"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Interrupted."
+msgstr "%s: Afbrudt."
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: %s: %s"
+msgstr "%s: %s: %s"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: %s: Failed"
+msgstr "%s: %s: mislykkedes"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Decoder %s did not work."
+msgstr "%s: Dekoder %s fungerede ikke."
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Ignoring and removing the user requested decoder %s"
+msgstr "%s: Ignorerer og fjerner den brugeranmodede dekoder %s"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Initializing vaapi decoder"
+msgstr "%s: Initialiserer vaapi -dekoder"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Unable to find vaapi hw device"
+msgstr "%s: Kan ikke finde vaapi hw -enhed"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Initializing cuda decoder"
+msgstr "%s: Initialiserer cuda -dekoder"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Unable to find cuda hw device"
+msgstr "%s: Kan ikke finde cuda hw -enhed"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Initializing decoder"
+msgstr "%s: Initialiserer dekoder"
 
 #: src/netcam_rtsp.c
 #, c-format
 msgid "%s: Using decoder %s"
 msgstr "%s: Brug af dekoder %s"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Decoder opened"
+msgstr "%s: Dekoder åbnet"
 
 #: src/netcam_rtsp.c
 #, c-format
@@ -2651,6 +2749,22 @@ msgstr "%s: Kameralæsning ( %s) er udløbet"
 #, c-format
 msgid "%s: Camera (%s) timed out"
 msgstr "%s: Kameraet ( %s) er udløbet"
+
+#: src/netcam_rtsp.c
+msgid "Unable to allocate swsframe_in."
+msgstr "Kan ikke tildele swsframe i."
+
+#: src/netcam_rtsp.c
+msgid "Unable to allocate swsframe_out."
+msgstr "Kan ikke tildele swsframe out."
+
+#: src/netcam_rtsp.c
+msgid "Unable to allocate scaling context."
+msgstr "Kan ikke tildele skaleringskontekst."
+
+#: src/netcam_rtsp.c
+msgid "Error determining size of frame out"
+msgstr "Fejl ved bestemmelse af størrelsen på rammen ud"
 
 #: src/netcam_rtsp.c
 #, c-format
@@ -2674,8 +2788,24 @@ msgstr "Fejl ved indsættelse af ramme i outputbuffer: %s"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: av_read_frame: %s ,Interrupt: %s"
-msgstr "%s: av læseramme: %s, Afbryd: %s"
+msgid "%s: Interrupted"
+msgstr "%s: Afbrudt"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: av_read_frame: %s"
+msgstr "%s: av læseramme: %s"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: capture_rate not specified in netcam_params. Using %d"
+msgstr "%s: fangsthastighed ikke angivet i netcam -params. Brug af %d"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: capture_rate not specified in netcam_params. Using framerate %d"
+msgstr ""
+"%s: fangsthastighed ikke angivet i netcam -params. Brug af framerate %d"
 
 #: src/netcam_rtsp.c
 msgid "The network camera is sending pictures in a different"
@@ -2743,95 +2873,55 @@ msgid "picture format to YUV420P to possibly lower CPU usage."
 msgstr "billedformat til YUV420P for muligvis lavere CPU-brug."
 
 #: src/netcam_rtsp.c
-msgid "Unable to allocate swsframe_in."
-msgstr "Kan ikke tildele swsframe i."
-
-#: src/netcam_rtsp.c
-msgid "Unable to allocate swsframe_out."
-msgstr "Kan ikke tildele swsframe out."
-
-#: src/netcam_rtsp.c
-msgid "Unable to allocate scaling context."
-msgstr "Kan ikke tildele skaleringskontekst."
-
-#: src/netcam_rtsp.c
-msgid "Error determining size of frame out"
-msgstr "Fejl ved bestemmelse af størrelsen på rammen ud"
+#, c-format
+msgid "%s: Setting rtsp/rtmp"
+msgstr "%s: Indstilling af rtsp/rtmp"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Setting http input_format mjpeg"
-msgstr "%s: Indstilling af http-inputformat mjpeg"
+msgid "%s: Setting input_format mjpeg"
+msgstr "%s: Indstilling af inputformat mjpeg"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Setting rtsp transport to tcp"
-msgstr "%s: Indstilling af rtsp transport til tcp"
+msgid "%s: Setting input_format video4linux2"
+msgstr "%s: Indstilling af inputformat video4linux2"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Setting rtsp transport to udp"
-msgstr "%s: Indstilling af rtsp transport til udp"
+msgid "%s: Setting up movie file"
+msgstr "%s: Opsætning af filmfil"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Setting attributes to read file"
-msgstr "%s: Indstiller attributter til læst fil"
+msgid "%s: Setting up %s"
+msgstr "%s: Opsætning af %s"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Requested v4l2_palette option: %d"
-msgstr "%s: Ønsket paletteindstilling for v4l2: %d"
+msgid "%s: option: %s = %s"
+msgstr "%s: option: %s = %s"
+
+#: src/netcam_rtsp.c
+msgid "Setting up v4l2 via netcam"
+msgstr "Opsætning af v4l2 via netcam"
+
+#: src/netcam_rtsp.c
+msgid "Setting up file via netcam"
+msgstr "Opsætning af fil via netcam"
 
 #: src/netcam_rtsp.c
 #, c-format
-msgid "%s: Requested FOURCC code: %s"
-msgstr "%s: Anmodet FOURCC-kode: %s"
+msgid "Setting up %s via netcam"
+msgstr "Opsætning af %s via netcam"
 
 #: src/netcam_rtsp.c
-#, c-format
-msgid "%s: Setting v4l2 input_format: %s"
-msgstr "%s: Indstilling af v4l2 inputformat: %s"
+msgid "highres"
+msgstr "høj opløsning"
 
 #: src/netcam_rtsp.c
-#, c-format
-msgid "%s: Setting v4l2 framerate: %s"
-msgstr "%s: Indstilling af v4l2 framerate: %s"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "%s: Setting v4l2 video_size: %s"
-msgstr "%s: Indstilling af v4l2-videostørrelse: %s"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "Proxies not supported using for %s"
-msgstr "Proxies understøttes ikke med i %s"
-
-#: src/netcam_rtsp.c
-msgid "Setting up v4l2 via ffmpeg netcam"
-msgstr "Opsætning af v4l2 via ffmpeg netcam"
-
-#: src/netcam_rtsp.c
-msgid "Setting up file via ffmpeg netcam"
-msgstr "Opsætning af fil via ffmpeg netcam"
-
-#: src/netcam_rtsp.c
-msgid "Setting up http via ffmpeg netcam"
-msgstr "Opsætning af http via ffmpeg netcam"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "Setting up %s via ffmpeg netcam"
-msgstr "Opsætning af %s via ffmpeg netcam"
-
-#: src/netcam_rtsp.c
-msgid "High resolution"
-msgstr "Høj opløsning"
-
-#: src/netcam_rtsp.c
-msgid "Normal resolution"
-msgstr "Normal opløsning"
+msgid "norm"
+msgstr "norm"
 
 #: src/netcam_rtsp.c
 #, c-format
@@ -2847,22 +2937,8 @@ msgid "Stream copied for pass-through"
 msgstr "Stream kopieret til gennemgang"
 
 #: src/netcam_rtsp.c
-msgid "ffmpeg too old"
-msgstr "ffmpeg for gammel"
-
-#: src/netcam_rtsp.c
 msgid "Null path passed to connect"
 msgstr "Nul sti passeret for at oprette forbindelse"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "%s: Invalid camera service"
-msgstr "%s: Ugyldig kameratjeneste"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "%s: Unable to open camera(%s)"
-msgstr "%s: Kan ikke åbne kameraet ( %s)"
 
 #: src/netcam_rtsp.c
 #, c-format
@@ -2911,6 +2987,36 @@ msgstr "%s: Kamera ( %s) tilsluttet"
 
 #: src/netcam_rtsp.c
 #, c-format
+msgid "%s: Netcam capture_rate is %d."
+msgstr "%s: Netcam -fangsthastighed er %d."
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Camera source is %d FPS"
+msgstr "%s: Kamerakilde er %d FPS"
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Unable to determine the camera source FPS."
+msgstr "%s: Kan ikke bestemme kamerakilden FPS."
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: capture_rate is less than camera FPS."
+msgstr "%s: optagelseshastighed er mindre end kameraets FPS."
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: Decoding errors will occur."
+msgstr "%s: Der vil forekomme afkodningsfejl."
+
+#: src/netcam_rtsp.c
+#, c-format
+msgid "%s: capture_rate slightly larger than camera FPS is recommended."
+msgstr "%s: fangehastighed lidt større end kameraets FPS anbefales."
+
+#: src/netcam_rtsp.c
+#, c-format
 msgid "%s: Reconnecting with camera...."
 msgstr "%s: Forbindelse igen med kamera ...."
 
@@ -2945,20 +3051,6 @@ msgid "%s: Waiting for first image from the handler."
 msgstr "%s: Venter på det første billede fra behandleren."
 
 #: src/netcam_rtsp.c
-#, c-format
-msgid "Requested frame rate %d FPS is less than camera frame rate %d FPS"
-msgstr "Den anmodede billedhastighed %d FPS er mindre end kameraets billedhastighed %d FPS"
-
-#: src/netcam_rtsp.c
-#, c-format
-msgid "Increasing capture rate to %d FPS to match camera."
-msgstr "Øget optagelsesfrekvens til %d FPS for at matche kameraet."
-
-#: src/netcam_rtsp.c
-msgid "To lower CPU, change camera FPS to lower rate and decrease I frame interval."
-msgstr "For at sænke CPU skal du ændre kameraets FPS til lavere hastighed og reducere I-rammeintervallet."
-
-#: src/netcam_rtsp.c
 msgid "unable to create rtsp context"
 msgstr "ikke i stand til at oprette rtsp-kontekst"
 
@@ -2967,8 +3059,8 @@ msgid "unable to create rtsp high context"
 msgstr "ikke i stand til at skabe rtsp-høj kontekst"
 
 #: src/netcam_rtsp.c
-msgid "FFmpeg/Libav not found on computer.  No RTSP support"
-msgstr "FFmpeg / Libav ikke fundet på computeren. Ingen RTSP-support"
+msgid "No FFmpeg support"
+msgstr "Ingen FFmpeg -understøttelse"
 
 #: src/netcam_rtsp.c
 #, c-format
@@ -3049,7 +3141,8 @@ msgstr "Kunne ikke læse billeddata fra pgm-fil"
 
 #: src/picture.c
 msgid "The mask file specified is not the same size as image from camera."
-msgstr "Den angivne maskefil er ikke den samme størrelse som billedet fra kameraet."
+msgstr ""
+"Den angivne maskefil er ikke den samme størrelse som billedet fra kameraet."
 
 #: src/picture.c
 #, c-format
@@ -3173,8 +3266,12 @@ msgstr "X forskydning %d"
 
 #: src/track.c
 #, c-format
-msgid "X cent->x %d, cent->y %d, reversex %d,reversey %d motorx %d data %d command %d"
-msgstr "X cent-> x %d, cent-> y %d, reversex %d, reversey %d motorx %d data %d kommando%d"
+msgid ""
+"X cent->x %d, cent->y %d, reversex %d,reversey %d motorx %d data %d command "
+"%d"
+msgstr ""
+"X cent-> x %d, cent-> y %d, reversex %d, reversey %d motorx %d data %d "
+"kommando%d"
 
 #: src/track.c
 #, c-format
@@ -3183,13 +3280,21 @@ msgstr "Y modregning %d"
 
 #: src/track.c
 #, c-format
-msgid "Y cent->x %d, cent->y %d, reversex %d,reversey %d motory %d data %d command %d"
-msgstr "Y cent-> x %d, cent-> y %d, reversex %d, reversey %d motory %d data %d kommando%d"
+msgid ""
+"Y cent->x %d, cent->y %d, reversex %d,reversey %d motory %d data %d command "
+"%d"
+msgstr ""
+"Y cent-> x %d, cent-> y %d, reversex %d, reversey %d motory %d data %d "
+"kommando%d"
 
 #: src/track.c
 #, c-format
-msgid "X-offset %d, Y-offset %d, x-position %d. y-position %d,reversex %d, reversey %d , stepsize %d"
-msgstr "X-offset %d, Y-offset %d, x-position %d. y-position %d, reversex %d, reversey%d, trinstørrelse %d"
+msgid ""
+"X-offset %d, Y-offset %d, x-position %d. y-position %d,reversex %d, reversey "
+"%d , stepsize %d"
+msgstr ""
+"X-offset %d, Y-offset %d, x-position %d. y-position %d, reversex %d, reversey"
+"%d, trinstørrelse %d"
 
 #: src/track.c
 msgid "Return byte timeout!"
@@ -3308,6 +3413,141 @@ msgstr "Efter REL Y Angel: x = %d, Y = %d"
 msgid "Language: English"
 msgstr "Sprog: Engelsk"
 
+#: src/util.c
+#, c-format
+msgid "Could not allocate %llu bytes of memory!"
+msgstr "Kunne ikke tildele %llu bytes hukommelse!"
+
+#: src/util.c
+#, c-format
+msgid "Warning! Function %s tries to resize memoryblock at %p to 0 bytes!"
+msgstr ""
+"Advarsel! Funktion %s forsøger at ændre størrelse på hukommelsesblok ved %p "
+"til 0 byte!"
+
+#: src/util.c
+#, c-format
+msgid "Could not resize memory-block at offset %p to %llu bytes (function %s)!"
+msgstr ""
+"Kunne ikke ændre størrelsen på hukommelsesblokken ved forskydning %p til "
+"%llu byte (funktion %s)!"
+
+#: src/util.c
+#, c-format
+msgid "Problem creating directory %s"
+msgstr "Problemer med at oprette mappe %s"
+
+#: src/util.c
+#, c-format
+msgid "creating directory %s"
+msgstr "oprette mappe %s"
+
+#: src/util.c
+#, c-format
+msgid "Error opening file %s with mode %s"
+msgstr "Fejl ved åbning af fil %s med tilstand %s"
+
+#: src/util.c
+msgid "Error closing file"
+msgstr "Fejl ved lukning af fil"
+
+#: src/util.c
+msgid "Used %{dbeventid} but sql_query_start returned no valid event ID"
+msgstr ""
+"Brugte %{dbeventid}, men start af sql -forespørgsel returnerede intet "
+"gyldigt hændelses -id"
+
+#: src/util.c
+#, c-format
+msgid "invalid format specifier keyword %*.*s"
+msgstr "ugyldigt formatspecifikt nøgleord %*.*s"
+
+#: src/util.c
+#, c-format
+msgid "Unable to set thread name %s"
+msgstr "Kunne ikke indstille trådnavnet %s"
+
+#: src/util.c
+msgid "FFMPEG version too old. Disabling pass-through processing."
+msgstr "FFMPEG-version for gammel. Deaktiverer gennemgangsbehandling."
+
+#: src/util.c
+msgid "pass-through enabled."
+msgstr "pass-through aktiveret."
+
+#: src/util.c
+#, c-format
+msgid "Error setting parm >%s<"
+msgstr "Fejl ved indstilling af parm>%s <"
+
+#: src/util.c
+#, c-format
+msgid "Parsed: >%s< >%s<"
+msgstr "Parset:>%s <>%s <"
+
+#: src/util.c
+msgid "Parsed: >redacted< >redacted<"
+msgstr "Parsed:> redacted <> redacted <"
+
+#: src/util.c
+#, c-format
+msgid "Error parsing parm_nm controls: %s"
+msgstr "Fejl ved parsing af parm nm -kontroller: %s"
+
+#: src/util.c
+#, c-format
+msgid "Error parsing parm_vl controls: %s"
+msgstr "Fejl under parsing af parm vl -kontroller: %s"
+
+#: src/util.c
+#, c-format
+msgid "Error setting temp: %s"
+msgstr "Fejl ved indstilling af temp: %s"
+
+#: src/util.c
+#, c-format
+msgid "Error reparsing controls: %s"
+msgstr "Fejl ved genindlæsning af kontroller: %s"
+
+#: src/util.c
+#, c-format
+msgid "Error parsing controls: %s"
+msgstr "Fejl ved analysering af kontroller: %s"
+
+#: src/util.c
+#, c-format
+msgid "Error: %s"
+msgstr "Fejl: %s"
+
+#: src/util.c
+#, c-format
+msgid "New netcam_params: %s"
+msgstr "Nye netcam -params: %s"
+
+#: src/util.c
+#, c-format
+msgid "New netcam_high_params: %s"
+msgstr "Nye netcam høje params: %s"
+
+#: src/util.c
+#, c-format
+msgid "New video_params: %s"
+msgstr "Nye videoparameter: %s"
+
+#: src/util.c
+#, c-format
+msgid "New stream_header_params: %s"
+msgstr "Nyt stream header params: %s"
+
+#: src/util.c
+msgid "New stream_header_params: <redacted>"
+msgstr "Nyt stream -header params: <redacted>"
+
+#: src/util.c
+#, c-format
+msgid "Programming error.  Unknown configuration item: %s"
+msgstr "Programmeringsfejl. Ukendt konfigurationselement: %s "
+
 #: src/video_bktr.c
 #, c-format
 msgid "METEORSHUE Error setting hue [%d]"
@@ -3382,13 +3622,13 @@ msgstr "til [ %d / %d] Norm %d"
 
 #: src/video_bktr.c
 #, c-format
-msgid "Not valid Frequency [%lu] for Source input [%i]"
-msgstr "Ikke gyldig Frekvens [ %lu] for kildeinput [ %i]"
+msgid "Not valid Frequency [%ld] for Source input [%i]"
+msgstr "Ikke gyldig Frekvens [%ld] for kildeindgang [%i]"
 
 #: src/video_bktr.c
 #, c-format
-msgid "Frequency [%lu] Source input [%i]"
-msgstr "Frekvens [ %lu] Kildeinput [ %i]"
+msgid "Frequency [%ld] Source input [%i]"
+msgstr "Frekvens [%ld] Kildeindgang [%i]"
 
 #: src/video_bktr.c
 #, c-format
@@ -3429,10 +3669,6 @@ msgstr "METEORCAPTUR ved hjælp af enkelt metode Fejlindfangning"
 msgid "Error capturing using single method"
 msgstr "Fejl under optagelse ved hjælp af en enkelt metode"
 
-#: src/video_bktr.c
-msgid "BKTR is not enabled."
-msgstr "BKTR er ikke aktiveret."
-
 #: src/video_bktr.c src/video_v4l2.c
 msgid "Unable to find video device"
 msgstr "Kan ikke finde videoenhed"
@@ -3464,7 +3700,9 @@ msgstr "Stop optagelse"
 #: src/video_bktr.c
 #, c-format
 msgid "Reusing [%s] inputs [%d,%d] Change capture method METEOR_CAP_SINGLE"
-msgstr "Genanvendelse af [ %s] input [ %d, %d] Skift indfangningsmetode METEOR CAP SINGLE"
+msgstr ""
+"Genanvendelse af [ %s] input [ %d, %d] Skift indfangningsmetode METEOR CAP "
+"SINGLE"
 
 #: src/video_bktr.c
 msgid "VIDEO_PALETTE_YUV420P setting imgs.size_norm and imgs.motionsize"
@@ -3488,11 +3726,6 @@ msgstr "Korrupt billede ... fortsæt"
 #, c-format
 msgid "SOI position adjusted by %d bytes."
 msgstr "SOI-position justeret med %d bytes."
-
-#: src/video_common.c
-#, c-format
-msgid "Parsing controls: %s"
-msgstr "Parringskontroller: %s"
 
 #: src/video_common.c
 msgid "calling mmalcam_cleanup"
@@ -3637,13 +3870,13 @@ msgstr "Sæt kontrol \" %s \" til værdi %d"
 
 #: src/video_v4l2.c
 #, c-format
-msgid "%s control option value %d is below minimum.  Using minimum"
-msgstr "%s kontrolindstillingsværdi %d er under minimum. Brug af minimum"
+msgid "%s control option value %s is below minimum.  Using minimum %d"
+msgstr "%s kontrolmulighedsværdi %s er under minimum. Brug minimum %d "
 
 #: src/video_v4l2.c
 #, c-format
-msgid "%s control option value %d is above maximum.  Using maximum"
-msgstr "%s kontrolindstillingsværdi %d er over maksimum. Brug maksimalt"
+msgid "%s control option value %s is above maximum.  Using maximum %d"
+msgstr "%s kontrolmulighedsværdi %s er over maksimum. Brug af maks. %d "
 
 #: src/video_v4l2.c
 msgid "control type not supported yet"
@@ -3651,8 +3884,12 @@ msgstr "kontroltype understøttes endnu ikke"
 
 #: src/video_v4l2.c
 #, c-format
-msgid "Unable to query input %d. VIDIOC_ENUMINPUT, if you use a WEBCAM change input value in conf by -1"
-msgstr "Kan ikke forespørge input %d. VIDIOC ENUMINPUT, hvis du bruger et WEBCAM-skift inputværdi i konf. med -1"
+msgid ""
+"Unable to query input %d. VIDIOC_ENUMINPUT, if you use a WEBCAM change input "
+"value in conf by -1"
+msgstr ""
+"Kan ikke forespørge input %d. VIDIOC ENUMINPUT, hvis du bruger et WEBCAM-"
+"skift inputværdi i konf. med -1"
 
 #: src/video_v4l2.c
 #, c-format
@@ -3767,8 +4004,10 @@ msgid "Adjusting to height (%d)"
 msgstr "Justering til højde ( %d)"
 
 #: src/video_v4l2.c
-msgid "H264(21) format not supported via videodevice.  Changing to default palette"
-msgstr "H264 (21) -format understøttes ikke via videodevice. Skift til standardpalet"
+msgid ""
+"H264(21) format not supported via videodevice.  Changing to default palette"
+msgstr ""
+"H264 (21) -format understøttes ikke via videodevice. Skift til standardpalet"
 
 #: src/video_v4l2.c
 #, c-format
@@ -3841,16 +4080,6 @@ msgid "Error starting stream. VIDIOC_STREAMON"
 msgstr "Fejl ved start af strøm. VIDIOC STREAMON"
 
 #: src/video_v4l2.c
-#, c-format
-msgid "1) vid_source->pframe %i"
-msgstr "1) vid source-> pframe %i"
-
-#: src/video_v4l2.c
-#, c-format
-msgid "the_buffer index %d Address (%x)"
-msgstr "bufferindekset %d Adresse ( %x)"
-
-#: src/video_v4l2.c
 msgid "Errors occurred during device select"
 msgstr "Der opstod fejl under valg af enhed"
 
@@ -3912,15 +4141,6 @@ msgstr "Framerat %d / %d"
 
 #: src/webu.c
 #, c-format
-msgid "Invalid url: %s"
-msgstr "Ugyldig url: %s"
-
-#: src/webu.c
-msgid "Error decoding url"
-msgstr "Fejl ved afkodning af url"
-
-#: src/webu.c
-#, c-format
 msgid "Sent url: %s"
 msgstr "Sendt url: %s"
 
@@ -3962,11 +4182,6 @@ msgstr "Indstil værdien til null / nul"
 
 #: src/webu.c
 #, c-format
-msgid "Connection from: %s"
-msgstr "Forbindelse fra: %s"
-
-#: src/webu.c
-#, c-format
 msgid "Failed authentication from %s"
 msgstr "Mislykket godkendelse fra %s"
 
@@ -3984,13 +4199,40 @@ msgstr "Ugyldigt svar"
 
 #: src/webu.c
 #, c-format
+msgid "Error adding webcontrol header %s %s"
+msgstr "Fejl ved tilføjelse af webkontroloverskrift %s %s"
+
+#: src/webu.c src/webu_stream.c
+#, c-format
+msgid "Error adding stream header %s %s"
+msgstr "Fejl ved tilføjelse af streamoverskrift %s %s"
+
+#: src/webu.c
+#, c-format
 msgid "Invalid Method requested: %s"
 msgstr "Ugyldig metode anmodet: %s"
 
 #: src/webu.c
 #, c-format
+msgid "Connection from: %s"
+msgstr "Forbindelse fra: %s"
+
+#: src/webu.c
+#, c-format
 msgid "send page failed %d"
 msgstr "sendes side mislykkedes %d"
+
+#: src/webu.c
+msgid "Stream picture is not ready yet"
+msgstr "Streambilledet er ikke klar endnu"
+
+#: src/webu.c
+msgid "Stream process requested to finish."
+msgstr "Streamprocessen anmodes om at blive afsluttet."
+
+#: src/webu.c
+msgid "Send page failed."
+msgstr "Send siden mislykkedes."
 
 #: src/webu.c
 msgid "Basic authentication: available"
@@ -4038,11 +4280,15 @@ msgstr "Fejl ved læsning af fil til SSL / TLS-support."
 
 #: src/webu.c
 msgid "SSL/TLS requested but no cert file provided.  SSL/TLS disabled"
-msgstr "SSL / TLS anmodet om, men der blev ikke leveret nogen certifikatfil. SSL / TLS deaktiveret"
+msgstr ""
+"SSL / TLS anmodet om, men der blev ikke leveret nogen certifikatfil. SSL / "
+"TLS deaktiveret"
 
 #: src/webu.c
 msgid "SSL/TLS requested but no key file provided.  SSL/TLS disabled"
-msgstr "SSL / TLS anmodet om, men der blev ikke leveret nogen nøglefil. SSL / TLS deaktiveret"
+msgstr ""
+"SSL / TLS anmodet om, men der blev ikke leveret nogen nøglefil. SSL / TLS "
+"deaktiveret"
 
 #: src/webu.c
 #, c-format
@@ -4087,6 +4333,10 @@ msgstr "Kan ikke starte strøm for kamera %d"
 #, c-format
 msgid "Duplicate port requested %d"
 msgstr "Dupliceret port anmodet %d"
+
+#: src/webu.c
+msgid "Invalid webcontrol_lock_max_ips.  Setting equal to 25."
+msgstr "Ugyldig webkontrollås maks. Ips. Indstilling lig med 25. "
 
 #: src/webu_html.c
 msgid "Cameras"
@@ -4225,7 +4475,8 @@ msgstr "Ugyldig URL til en kameraspecifik port: %s"
 #: src/webu_stream.c
 #, c-format
 msgid "URL for thread 0 is not valid when using camera specific files.: %s"
-msgstr "URL til tråd 0 er ikke gyldig, når du bruger kameraspecifikke filer: %s"
+msgstr ""
+"URL til tråd 0 er ikke gyldig, når du bruger kameraspecifikke filer: %s"
 
 #: src/webu_stream.c
 #, c-format
@@ -4240,3 +4491,58 @@ msgstr "Billedet kunne ikke streames."
 #, c-format
 msgid "'%s' option is depreciated.  New option name is '%s'"
 msgstr "Indstillingen ' %s' afskrives. Navn på den nye indstilling er '%s' "
+
+#: src/conf.c
+msgid "webcontrol_lock_minutes"
+msgstr "webkontrol lås minutter"
+
+#: src/conf.c
+msgid "webcontrol_lock_attempts"
+msgstr "forsøg på webkontrollås"
+
+#: src/conf.c
+msgid "webcontrol_lock_max_ips"
+msgstr "webkontrol lås max ips"
+
+#: src/event.c
+#, c-format
+msgid "Writing image to file: %s"
+msgstr "Skriver billede til fil: %s"
+
+#: src/event.c
+#, c-format
+msgid "Writing movie to file: %s"
+msgstr "Skriver film til fil: %s"
+
+#: src/event.c
+#, c-format
+msgid "Saved image to file: %s"
+msgstr "Gemt billede i fil: %s"
+
+#: src/event.c
+#, c-format
+msgid "Saved movie to file: %s"
+msgstr "Filmen blev gemt i filen: %s"
+
+#: src/util.c
+#, c-format
+msgid "Parsing: %s"
+msgstr "Parsing: %s"
+
+#: src/util.c
+msgid "Parsing: <redacted>"
+msgstr "Parsing: <redigeret>"
+
+#: src/util.c
+#, c-format
+msgid "New webcontrol_header_params: %s"
+msgstr "Nyt webkontrolhovedparameter: %s"
+
+#: src/util.c
+msgid "New webcontrol_header_params: <redacted>"
+msgstr "Nye webkontrolhovedparametre: <redigeret>"
+
+#: src/webu.c
+#, c-format
+msgid "Ignoring connection from: %s"
+msgstr "Ignorerer forbindelse fra: %s"

@@ -120,7 +120,7 @@ void netcam_url_parse(struct url_t *parse_url, const char *text_url)
     char *s;
     int i;
 
-    const char *re = "(http|ftp|mjpg|mjpeg|rtsp|rtmp)://(((.*):(.*))@)?"
+    const char *re = "(.*)://(((.*):(.*))@)?"
                      "([^/:]|[-_.a-z0-9]+)(:([0-9]+))?($|(/[^*]*))";
     regex_t pattbuf;
     regmatch_t matches[10];
@@ -186,19 +186,6 @@ void netcam_url_parse(struct url_t *parse_url, const char *text_url)
         }
     } else {
         netcam_url_invalid(parse_url);
-    }
-    if (((!parse_url->port) && (parse_url->service)) ||
-        ((parse_url->port > 65535) && (parse_url->service))) {
-        if (mystreq(parse_url->service, "http")) {
-            parse_url->port = 80;
-        } else if (mystreq(parse_url->service, "ftp")) {
-            parse_url->port = 21;
-        } else if (mystreq(parse_url->service, "rtmp")) {
-            parse_url->port = 1935;
-        } else if (mystreq(parse_url->service, "rtsp")) {
-            parse_url->port = 554;
-        }
-        MOTION_LOG(INF, TYPE_NETCAM, NO_ERRNO, _("Using port number %d"),parse_url->port);
     }
 
     regfree(&pattbuf);
@@ -456,6 +443,10 @@ void netcam_cleanup(netcam_context_ptr netcam, int init_retry_flag)
         return;
     }
 
+    if (netcam->cnt->netcam == NULL) {
+        return;
+    }
+
     /*
      * This 'lock' is just a bit of "defensive" programming.  It should
      * only be necessary if the routine is being called from different
@@ -463,10 +454,6 @@ void netcam_cleanup(netcam_context_ptr netcam, int init_retry_flag)
      * the motion main-loop.
      */
     pthread_mutex_lock(&netcam->mutex);
-
-    if (netcam->cnt->netcam == NULL) {
-        return;
-    }
 
     /*
      * We set the netcam_context pointer in the motion main-loop context
@@ -682,7 +669,7 @@ int netcam_start(struct context *cnt)
 
     netcam->parameters = mymalloc(sizeof(struct params_context));
     netcam->parameters->update_params = TRUE;
-    util_parms_parse(netcam->parameters, (char*)cnt->conf.netcam_params);
+    util_parms_parse(netcam->parameters, (char*)cnt->conf.netcam_params, TRUE);
     util_parms_add_default(netcam->parameters,"proxy","NULL");
     util_parms_add_default(netcam->parameters,"keepalive","off");
     util_parms_add_default(netcam->parameters,"tolerant_check","off"); /*false*/
@@ -707,6 +694,13 @@ int netcam_start(struct context *cnt)
 
             netcam->connect_host = url.host;
             url.host = NULL;
+
+            if ((url.port == 0) && mystreq(url.service, "ftp")) {
+                url.port = 21;
+            } else if ((url.port == 0) && mystreq(url.service, "mjpeg")) {
+                url.port = 80;
+            }
+
             netcam->connect_port = url.port;
             netcam_url_free(&url);  /* Finished with proxy */
 
@@ -730,6 +724,12 @@ int netcam_start(struct context *cnt)
             ,_("Invalid netcam_url for camera (%s)"), cnt->conf.camera_name);
         netcam_url_free(&url);
         return -1;
+    }
+
+    if ((url.port == 0) && mystreq(url.service, "ftp")) {
+        url.port = 21;
+    } else if ((url.port == 0) && mystreq(url.service, "mjpeg")) {
+        url.port = 80;
     }
 
     for (indx = 0; indx < netcam->parameters->params_count; indx++) {
@@ -779,7 +779,7 @@ int netcam_start(struct context *cnt)
     /* Initialise the netcam socket to -1 to trigger a connection by the keep-alive logic. */
     netcam->sock = -1;
 
-    if ((url.service) && (mystreq(url.service, "http"))) {
+    if ((url.service) && (mystreq(url.service, "mjpeg"))) {
         MOTION_LOG(INF, TYPE_NETCAM, NO_ERRNO,_("now calling netcam_setup_html()"));
         retval = netcam_setup_html(netcam, &url);
     } else if ((url.service) && (mystreq(url.service, "ftp"))) {
@@ -789,10 +789,11 @@ int netcam_start(struct context *cnt)
         MOTION_LOG(INF, TYPE_NETCAM, NO_ERRNO,_("now calling netcam_setup_file()"));
         retval = netcam_setup_file(netcam, &url);
     } else if ((url.service) && (mystreq(url.service, "mjpg"))) {
+        MOTION_LOG(INF, TYPE_NETCAM, NO_ERRNO,_("now calling netcam_setup_mjpg()"));
         retval = netcam_setup_mjpg(netcam, &url);
     } else {
         MOTION_LOG(CRT, TYPE_NETCAM, NO_ERRNO
-            ,_("Invalid netcam service '%s' - must be http, ftp, mjpg, mjpeg, v4l2 or jpeg.")
+            ,_("Invalid netcam service '%s' - must be mjpeg, ftp, mjpg or jpeg.")
             , url.service);
         retval = -1;
     }

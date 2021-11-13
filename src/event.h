@@ -15,13 +15,11 @@
  */
 
 /*
- *    event.h
- *
- *    Include file for event.c
- *
+ *  event.h
+ *    Headers associated with functions in the event.c module.
  *    Copyright Jeroen Vreeken, 2002
- *
  */
+
 #ifndef _INCLUDE_EVENT_H_
 #define _INCLUDE_EVENT_H_
 
@@ -46,7 +44,9 @@ typedef enum {
     EVENT_CAMERA_LOST,
     EVENT_CAMERA_FOUND,
     EVENT_FFMPEG_PUT,
-    EVENT_LAST,
+    EVENT_MOVIE_START,
+    EVENT_MOVIE_END,
+    EVENT_LAST
 } motion_event;
 
 typedef void(* event_handler)(struct context *cnt, motion_event type, struct image_data *img_data,

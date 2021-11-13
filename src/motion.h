@@ -14,17 +14,16 @@
  *   along with Motion.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/*    motion.h
- *
- *    Include file for motion.c
- *      Copyright 2000 by Jeroen Vreeken (pe1rxq@amsat.org)
- *
+/*
+ *  motion.h
+ *    Headers associated with functions in the motion.c module.
+ *    Copyright 2000 by Jeroen Vreeken (pe1rxq@amsat.org)
  */
 
 #ifndef _INCLUDE_MOTION_H
 #define _INCLUDE_MOTION_H
 
-/* Forward declarations, used in functional definitions of headers */
+/* Forward declarations of structs */
 struct images;
 struct image_data;
 struct rtsp_context;
@@ -76,7 +75,11 @@ struct ffmpeg;
 #endif
 
 #ifdef HAVE_PGSQL
+    // avoid libpq-fe.h collision with motion.h #define CONNECTION_OK (below)
+    #define CONNECTION_OK PGSQL_CONNECTION_OK
     #include <libpq-fe.h>
+    // avoid redefinition warning for motion.h #define CONNECTION_OK below
+    #undef CONNECTION_OK
 #endif
 
 #ifdef HAVE_FFMPEG
@@ -148,9 +151,6 @@ struct ffmpeg;
                                     MISSING_FRAMES_TIMEOUT seconds has passed
                                     and then we show a grey image instead
                                     */
-
-#define WATCHDOG_TMO            30   /* 30 sec max motion_loop interval */
-#define WATCHDOG_KILL          -10   /* 10 sec grace period before calling thread cancel */
 
 #define CONNECTION_KO           "Lost connection"
 #define CONNECTION_OK           "Connection OK"
@@ -455,6 +455,7 @@ struct context {
     time_t currenttime;
     time_t lasttime;
     time_t eventtime;
+    time_t movietime;
     time_t connectionlosttime;               /* timestamp from connection lost */
 
     unsigned int lastrate;
@@ -486,6 +487,17 @@ struct context {
 
     #ifdef HAVE_PGSQL
         PGconn *database_pgsql;
+        int    eid_db_format;          /* db event ID PQfformat() or PQgetlength() if binary */
+        #define dbeid_undetermined -1  /* sql_query_start not present or not yet executed    */
+        #define dbeid_no_return    -2  /* sql_query_start statement returned nothing         */
+        #define dbeid_not_valid    -3  /* sql_query_start statement returned invalid value:  */
+                                       /* multiple values or value not a positive integer    */
+        #define dbeid_unk_format   -4  /* PGgetlength() returned unexpected size for bin fmt */
+        #define dbeid_use_error    -5  /* %{dbeventid} used w/ no sql_query_start return val */
+        #define dbeid_recovery     -6  /* PGSQL session in recovery after session failure    */
+        #define dbeid_rec_fail     -7  /* PQresetStart failed; keep trying                   */
+                                       /* NB: for values < -1, event ID recording is skipped */
+                                       /* unless lost session recovery or SIGHUP occur       */
     #endif
 
     int movie_fps;
@@ -542,6 +554,9 @@ struct context {
     struct stream_data  stream_sub;     /* Copy of the image to use for web stream*/
     struct stream_data  stream_motion;  /* Copy of the image to use for web stream*/
     struct stream_data  stream_source;  /* Copy of the image to use for web stream*/
+
+    struct params_context    *webcontrol_headers;  /* Headers for webcontrol */
+    struct params_context    *stream_headers;  /* Headers for stream */
 
 
 };

@@ -14,6 +14,11 @@
  *   along with Motion.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+ *  netcam_rtsp.h
+ *    Headers associated with functions in the netcam_rtsp.c module.
+ */
+
 #ifndef _INCLUDE_NETCAM_RTSP_H
 #define _INCLUDE_NETCAM_RTSP_H
 
@@ -35,7 +40,7 @@ struct imgsize_context {
 #ifdef HAVE_FFMPEG
 
     struct packet_item{
-        AVPacket                  packet;
+        AVPacket                 *packet;
         int64_t                   idnbr;
         int                       iskey;
         int                       iswritten;
@@ -50,7 +55,7 @@ struct imgsize_context {
         AVFrame                  *swsframe_in;           /* Used when resizing image sent from camera */
         AVFrame                  *swsframe_out;          /* Used when resizing image sent from camera */
         struct SwsContext        *swsctx;                /* Context for the resizing of the image */
-        AVPacket                  packet_recv;           /* The packet that is currently being processed */
+        AVPacket                 *packet_recv;           /* The packet that is currently being processed */
         AVFormatContext          *transfer_format;       /* Format context just for transferring to pass-through */
         struct packet_item       *pktarray;              /* Pointer to array of packets for passthru processing */
         int                       pktarray_size;         /* The number of packets in array.  1 based */
@@ -64,7 +69,7 @@ struct imgsize_context {
             enum AVPixelFormat        hw_pix_fmt;
             AVBufferRef               *hw_device_ctx;
         #endif
-        AVCodec                   *decoder;
+        my_AVCodec               *decoder;
 
         enum RTSP_STATUS          status;                /* Status of whether the camera is connecting, closed, etc*/
         struct timeval            interruptstarttime;    /* The time set before calling the av functions */
@@ -82,7 +87,7 @@ struct imgsize_context {
         int                       passthrough;      /* Boolean for whether we are doing pass-through processing */
 
         char                     *path;             /* The connection string to use for the camera */
-        char                      service[5];       /* String specifying the type of camera http, rtsp, v4l2 */
+        char                     *service;          /* String specifying the type of camera http, rtsp, v4l2 */
         const char               *camera_name;      /* The name of the camera as provided in the config file */
         char                      cameratype[30];   /* String specifying Normal or High for use in logging */
         struct imgsize_context    imgsize;          /* The image size parameters */
